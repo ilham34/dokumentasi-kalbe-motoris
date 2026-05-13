@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alur Aplikasi — Kalbe Motoris</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1><span>Kalbe Motoris</span></h1>
+  <p>Tracking &amp; Reporting — Dokumentasi Alur Sistem</p>
+  <div class="badge-row">
+    <span class="badge badge-orange">🌐 Website Admin</span>
+    <span class="badge badge-blue">📱 Android App</span>
+    <span class="badge badge-green">📊 Real-time Dashboard</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('web')">🌐 Alur Website</div>
+    <div class="tab" onclick="showTab('android')">📱 Alur Android</div>
+    <div class="tab" onclick="showTab('menu')">📋 Menu &amp; Fitur</div>
+    <div class="tab" onclick="showTab('keunggulan')">🏆 Keunggulan</div>
+  </div>
+
+  <!-- ===== TAB: WEBSITE ===== -->
+  <div id="tab-web" class="tab-content active">
+    <div class="section">
+      <div class="section-title"><div class="icon icon-orange">🔐</div> Alur Website Admin</div>
+      <p style="color:var(--text2);margin-bottom:24px;">Website digunakan oleh <strong>Admin / Manajemen</strong> untuk mengelola master data, memantau aktivitas sales lapangan, dan melihat laporan.</p>
+      <div class="flow">
+        <div class="flow-step"><span class="step-num">1</span><h4>Login Admin</h4><p>Admin masuk dengan username & password. Sistem memvalidasi level akses (Super Admin, Regional Sales Manager, Area Sales Manager, Team Leader, dll).</p></div>
+        <div class="flow-step"><span class="step-num">2</span><h4>Dashboard Motoris</h4><p>Menampilkan ringkasan: Peta aktivitas sales, grafik penjualan (Qty & Nominal), ranking penjualan per produk, distribusi, filter per Regional/Area/Team Leader/Sales.</p></div>
+        <div class="flow-step"><span class="step-num">3</span><h4>Kelola Master Data</h4><p>Admin mengelola: Master Barang, Toko, Pegawai/Karyawan, Regional, Area, Team Leader, Jabatan, Kategori Barang, Type Toko, Group Toko, DC Toko, Wilayah (Provinsi/Kabupaten/Kecamatan/Kelurahan).</p></div>
+        <div class="flow-step"><span class="step-num">4</span><h4>Kelola Transaksi</h4><p>Memonitor dan mengelola: Penjualan Produk, Pembelian Produk, Pengembalian Produk, Input PO, Setor Uang/Kas, Pindah Stok.</p></div>
+        <div class="flow-step"><span class="step-num">5</span><h4>Monitoring Aktivitas Lapangan</h4><p>Melihat data Check In/Check Out sales (foto, koordinat GPS, waktu, durasi), Peta lokasi real-time (Map Activity & Map Sales), Foto Activity Motoris & SMD.</p></div>
+        <div class="flow-step"><span class="step-num">6</span><h4>Laporan</h4><p>Laporan Penjualan, Laporan Kunjungan (CICO), Laporan Stok, Laporan Distribusi, Laporan Foto Activity, Laporan Ijin, Laporan Rekap, Ranking Penjualan, Export CSV/Excel.</p></div>
+        <div class="flow-step"><span class="step-num">7</span><h4>Setting & User Management</h4><p>Kelola User & Level Akses, Setting Menu per role, Otoritas Aplikasi, Identitas Perusahaan, Setting Reward Toko, Pengumuman, Firebase Notifikasi.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: ANDROID ===== -->
+  <div id="tab-android" class="tab-content">
+    <div class="section">
+      <div class="section-title"><div class="icon icon-blue">📱</div> Alur Aplikasi Android (Sales Lapangan)</div>
+      <p style="color:var(--text2);margin-bottom:24px;">Aplikasi Android (Flutter) digunakan oleh <strong>Sales/Motoris</strong> di lapangan untuk check in ke toko, melakukan transaksi, dan dokumentasi aktivitas.</p>
+      <div class="flow">
+        <div class="flow-step"><span class="step-num">1</span><h4>Splash Screen</h4><p>Menampilkan logo Kalbe Motoris selama 1 detik saat inisialisasi aplikasi. Dark mode dengan aksen oranye.</p></div>
+        <div class="flow-step"><span class="step-num">2</span><h4>Login</h4><p>Input Username & Password. Auto-login jika sesi masih aktif. Tersimpan di SharedPreferences. Jika password baru, diarahkan ke halaman Ganti Password.</p></div>
+        <div class="flow-step"><span class="step-num">3</span><h4>Home Panel (Bottom Navigation)</h4><p>5 tab navigasi bawah: <strong>Home</strong> (Check In & Menu), <strong>Log Produk</strong> (riwayat produk), <strong>Log Uang</strong> (riwayat keuangan), <strong>Log Activity</strong> (riwayat aktivitas), <strong>Profile</strong> (data diri & logout).</p></div>
+        <div class="flow-step"><span class="step-num">4</span><h4>Check In ke Toko</h4><p>Sales memilih toko terdekat (berdasarkan GPS) atau membuat toko baru (NOO). Wajib foto Check In. Lokasi GPS & alamat otomatis tercatat. Peta Google Maps menampilkan posisi saat ini.</p></div>
+        <div class="flow-step"><span class="step-num">5</span><h4>Menu Transaksi (Setelah Check In)</h4><p>Menu muncul dinamis sesuai hak akses. Tersedia: Penjualan, Pembelian, Distribusi Produk, Distribusi Kategori, Foto Activity Motoris, Foto Activity SMD, Pengembalian, Input PO, Setor Uang, Input Stok, Input Ijin.</p></div>
+        <div class="flow-step"><span class="step-num">6</span><h4>Transaksi di Toko</h4><p><strong>Penjualan:</strong> Pilih produk → input qty & harga → simpan detail → posting.<br><strong>Pembelian:</strong> Catat pembelian dari distributor.<br><strong>Distribusi:</strong> Checklist ketersediaan produk di toko vs kompetitor.<br><strong>Foto Activity:</strong> Upload foto aktivitas promosi di toko.</p></div>
+        <div class="flow-step"><span class="step-num">7</span><h4>Check Out</h4><p>Setelah selesai, sales melakukan Check Out. Wajib foto Check Out. Lokasi GPS tercatat. Durasi kunjungan terhitung otomatis.</p></div>
+        <div class="flow-step"><span class="step-num">8</span><h4>Kunjungan Berikutnya</h4><p>Sales berpindah ke toko lain, ulangi proses Check In → Transaksi → Check Out. Jumlah kunjungan hari ini tercatat di Home.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: MENU ===== -->
+  <div id="tab-menu" class="tab-content">
+    <!-- Website Menus -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-orange">🌐</div> Menu Website Admin</div>
+      <div class="menu-grid">
+        <div class="menu-card"><h4><span class="emoji">📊</span> Dashboard Motoris</h4><p>Dashboard interaktif dengan grafik penjualan (Qty & Nominal), ranking produk, peta aktivitas, filter multi-level (Nasional → Regional → Area → Team Leader → Sales).</p><span class="tag tag-laporan">Dashboard</span></div>
+        <div class="menu-card"><h4><span class="emoji">📦</span> Master Barang</h4><p>Kelola data produk: kode, nama, kategori, type, merk, satuan, kelompok, harga. Termasuk detail barang dan rasio satuan.</p><span class="tag tag-master">Master</span></div>
+        <div class="menu-card"><h4><span class="emoji">🏪</span> Master Toko</h4><p>Data toko/outlet: nama, alamat, group toko, type toko, DC toko, kelurahan, koordinat GPS, type lokasi.</p><span class="tag tag-master">Master</span></div>
+        <div class="menu-card"><h4><span class="emoji">👥</span> Master Pegawai</h4><p>Data karyawan, jabatan, team level (Regional, Sub-Regional, Team Leader, Cabang), area kerja, dan wilayah.</p><span class="tag tag-master">Master</span></div>
+        <div class="menu-card"><h4><span class="emoji">🗺️</span> Wilayah</h4><p>Kelola hierarki wilayah: Provinsi, Kabupaten, Kecamatan, Kelurahan. Regional, Area, dan Spot Area.</p><span class="tag tag-master">Master</span></div>
+        <div class="menu-card"><h4><span class="emoji">🛒</span> Penjualan</h4><p>Monitoring transaksi penjualan dari sales lapangan. Detail produk, qty, harga, total per transaksi.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📥</span> Pembelian</h4><p>Catat pembelian produk dari distributor. Master & detail pembelian.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">🔄</span> Pengembalian</h4><p>Proses retur/pengembalian produk dari toko ke distributor.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📋</span> Input PO</h4><p>Purchase Order dari toko. Master & detail PO dengan approval flow.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">💰</span> Setor Uang/Kas</h4><p>Pencatatan setor uang dari sales, setor kas, setor bank, penyerahan uang.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📊</span> Laporan Penjualan</h4><p>Rekap penjualan per periode, per sales, per produk, per toko. Download Excel/CSV.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📍</span> Laporan Kunjungan (CICO)</h4><p>Check In/Check Out: waktu, durasi, foto, lokasi GPS, alamat lengkap per sales per hari.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📸</span> Laporan Foto Activity</h4><p>Foto aktivitas motoris & SMD di toko. Foto promosi, display, branding.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📈</span> Laporan Distribusi</h4><p>Checklist distribusi produk per toko. Distribusi by produk & by kategori.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📦</span> Laporan Stok</h4><p>Monitoring stok per outlet, stok harian, stock report, status stok.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji">🗺️</span> Map Activity</h4><p>Peta real-time lokasi sales dan aktivitas kunjungan per tanggal.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji">👤</span> User & Akses</h4><p>Manajemen user, level akses, otoritas per menu (Add/Edit/Delete/Print).</p><span class="tag tag-setting">Setting</span></div>
+        <div class="menu-card"><h4><span class="emoji">⚙️</span> Setting</h4><p>Identitas perusahaan, reward toko, jadwal reward, pengumuman, firebase notifikasi.</p><span class="tag tag-setting">Setting</span></div>
+      </div>
+    </div>
+
+    <!-- Android Menus -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-blue">📱</div> Menu Aplikasi Android</div>
+      <div class="menu-grid">
+        <div class="menu-card"><h4><span class="emoji">📍</span> Check In / Check Out</h4><p>GPS-based check in ke toko terdaftar atau buat toko baru (NOO). Foto wajib, koordinat & alamat otomatis, Google Maps, tracking durasi kunjungan.</p><span class="tag tag-field">Lapangan</span></div>
+        <div class="menu-card"><h4><span class="emoji">🛒</span> Penjualan</h4><p>Input penjualan produk di toko setelah check in. Pilih produk, qty, harga. Multi-item per transaksi. Auto-sync ke server.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📥</span> Pembelian</h4><p>Catat pembelian produk dari distributor. Khusus tipe toko Distributor.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📊</span> Distribusi Produk</h4><p>Checklist ketersediaan produk Kalbe vs kompetitor di rak toko. Data distribusi per produk.</p><span class="tag tag-field">Lapangan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📂</span> Distribusi Kategori</h4><p>Checklist distribusi berdasarkan kategori produk. Analisa penetrasi per kategori.</p><span class="tag tag-field">Lapangan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📸</span> Foto Activity Motoris</h4><p>Upload foto aktivitas motoris di toko: display produk, promo, branding. Pilih jenis foto sesuai kategori.</p><span class="tag tag-field">Lapangan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📷</span> Foto Activity SMD</h4><p>Upload foto aktivitas SMD dengan sub-detail. Dokumentasi aktivitas sales & marketing.</p><span class="tag tag-field">Lapangan</span></div>
+        <div class="menu-card"><h4><span class="emoji">🔄</span> Pengembalian</h4><p>Proses retur produk dari toko. Khusus tipe toko Distributor.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📋</span> Input PO</h4><p>Input Purchase Order dari toko. Master & detail item PO.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">💰</span> Setor Uang</h4><p>Pencatatan setor uang hasil penjualan. Dengan opsi setor manual.</p><span class="tag tag-transaksi">Transaksi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📦</span> Input Stok</h4><p>Input stok produk di toko. Monitoring ketersediaan barang.</p><span class="tag tag-field">Lapangan</span></div>
+        <div class="menu-card"><h4><span class="emoji">📝</span> Input Ijin</h4><p>Pengajuan ijin/cuti dari sales. Dengan flow approval dan posting.</p><span class="tag tag-setting">Administrasi</span></div>
+        <div class="menu-card"><h4><span class="emoji">📦</span> Log Produk</h4><p>Riwayat transaksi produk: penjualan, pembelian, stok masuk/keluar.</p><span class="tag tag-laporan">Log</span></div>
+        <div class="menu-card"><h4><span class="emoji">💵</span> Log Uang</h4><p>Riwayat transaksi keuangan: setor uang, kas masuk/keluar.</p><span class="tag tag-laporan">Log</span></div>
+        <div class="menu-card"><h4><span class="emoji">🏃</span> Log Activity</h4><p>Riwayat aktivitas lapangan: kunjungan, check in/out, transaksi.</p><span class="tag tag-laporan">Log</span></div>
+        <div class="menu-card"><h4><span class="emoji">👤</span> Profile & Ganti Password</h4><p>Lihat data profil sales, jabatan, team, area, regional. Ganti password.</p><span class="tag tag-setting">Akun</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: KEUNGGULAN ===== -->
+  <div id="tab-keunggulan" class="tab-content">
+    <div class="section">
+      <div class="section-title"><div class="icon icon-green">🏆</div> Keunggulan vs Kompetitor</div>
+      <div class="adv-grid">
+        <div class="adv-card">
+          <h4>📍 GPS-Based Check In/Out</h4>
+          <ul>
+            <li>Validasi lokasi real-time dengan Google Maps</li>
+            <li>Deteksi lokasi palsu (mock location detection)</li>
+            <li>Foto wajib saat Check In & Check Out sebagai bukti</li>
+            <li>Pencatatan durasi kunjungan otomatis</li>
+            <li>Alamat otomatis dari geocoding (reverse geocoding)</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>🔐 Multi-Level Akses Hierarkis</h4>
+          <ul>
+            <li>Hierarki: SA → Regional → Sub-Regional → Team Leader → Cabang → Sales</li>
+            <li>Dashboard filter otomatis sesuai level user</li>
+            <li>Menu dinamis sesuai hak akses (konfigurasi per user)</li>
+            <li>Otoritas CRUD per menu (Add/Edit/Delete/Print)</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>📊 Dashboard Analitik Real-time</h4>
+          <ul>
+            <li>Grafik penjualan by Qty & Nominal (ApexCharts)</li>
+            <li>Ranking penjualan per produk</li>
+            <li>Penjualan per sales per produk</li>
+            <li>Analisa distribusi produk vs kompetitor</li>
+            <li>Filter multi-level: Nasional hingga per Sales</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>📱 Aplikasi Mobile Flutter (Cross-Platform)</h4>
+          <ul>
+            <li>Built dengan Flutter — performa native di Android & iOS</li>
+            <li>Dark Mode modern dengan UI yang intuitif</li>
+            <li>Offline-capable (SharedPreferences untuk session)</li>
+            <li>Auto-login untuk produktivitas sales</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>🏪 Manajemen Toko Lengkap (NOO Support)</h4>
+          <ul>
+            <li>NOO (New Open Outlet) — sales bisa daftarkan toko baru langsung dari lapangan</li>
+            <li>Toko terdekat otomatis berdasarkan radius GPS</li>
+            <li>Klasifikasi: Group Toko, Type Toko, DC Toko, Type Lokasi</li>
+            <li>Integrasi wilayah lengkap (Provinsi → Kelurahan)</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>📸 Dokumentasi Foto Aktivitas</h4>
+          <ul>
+            <li>Foto Activity Motoris & SMD dengan kategorisasi</li>
+            <li>Upload langsung dari kamera smartphone</li>
+            <li>Terintegrasi dengan data check in toko</li>
+            <li>Laporan foto activity lengkap di website admin</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>📈 Distribusi & Kompetitor Analysis</h4>
+          <ul>
+            <li>Checklist distribusi produk di setiap toko</li>
+            <li>Perbandingan produk sendiri vs kompetitor</li>
+            <li>Distribusi by produk & by kategori</li>
+            <li>Data real-time untuk strategi penetrasi pasar</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>🔔 Notifikasi & Komunikasi</h4>
+          <ul>
+            <li>Firebase Cloud Messaging untuk push notification</li>
+            <li>Pengumuman dari admin ke semua sales</li>
+            <li>Kirim pesan internal ke pegawai</li>
+            <li>Alert system untuk approval & posting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-purple">📊</div> Perbandingan dengan Kompetitor</div>
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Fitur</th>
+              <th>Kalbe Motoris</th>
+              <th>Kompetitor Umum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>GPS Check In/Out dengan Foto</td><td class="check">✓ Lengkap + Anti Fake GPS</td><td class="cross">✗ Sebagian tanpa foto</td></tr>
+            <tr><td>Dashboard Multi-Level Hierarki</td><td class="check">✓ 6 Level (SA→Sales)</td><td class="cross">✗ Umumnya 2-3 level</td></tr>
+            <tr><td>NOO (New Open Outlet) dari Lapangan</td><td class="check">✓ Sales bisa daftar toko baru</td><td class="cross">✗ Harus via admin</td></tr>
+            <tr><td>Distribusi Produk vs Kompetitor</td><td class="check">✓ Checklist per produk & kategori</td><td class="cross">✗ Jarang tersedia</td></tr>
+            <tr><td>Foto Activity Terkategorisasi</td><td class="check">✓ Motoris & SMD terpisah</td><td class="cross">✗ Foto tanpa kategori</td></tr>
+            <tr><td>Grafik Penjualan Interaktif</td><td class="check">✓ ApexCharts multi-dimensi</td><td>○ Grafik sederhana</td></tr>
+            <tr><td>Map Real-time Lokasi Sales</td><td class="check">✓ Google Maps terintegrasi</td><td>○ Sebagian ada</td></tr>
+            <tr><td>Menu Dinamis per Hak Akses</td><td class="check">✓ Konfigurasi per user</td><td class="cross">✗ Menu statis</td></tr>
+            <tr><td>Multi-Transaksi (Jual/Beli/PO/Retur)</td><td class="check">✓ Lengkap semua tipe</td><td>○ Umumnya hanya penjualan</td></tr>
+            <tr><td>Export Laporan (Excel/CSV)</td><td class="check">✓ Multi-format export</td><td>○ Terbatas</td></tr>
+            <tr><td>Cross-Platform (Android & iOS)</td><td class="check">✓ Flutter Framework</td><td class="cross">✗ Kebanyakan Android only</td></tr>
+            <tr><td>Setor Uang & Kas Management</td><td class="check">✓ Lengkap + manual option</td><td class="cross">✗ Jarang tersedia</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>📄 Dokumentasi Alur Aplikasi Kalbe Motoris — Tracking & Reporting System</p>
+  <p style="margin-top:8px;">Website (CodeIgniter 3) • Android (Flutter) • Powered by 7Smarts</p>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
