@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dokumentasi Menu Aktif Super Admin - Kalbe Motoris</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #667085;
+      --line: #d9e2ef;
+      --brand: #b42318;
+      --brand-soft: #fff1f0;
+      --accent: #0f766e;
+      --accent-soft: #ecfdf3;
+      --warning-soft: #fff7ed;
+      --shadow: 0 10px 28px rgba(15, 23, 42, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    header {
+      background: #8f1f18;
+      color: #ffffff;
+      padding: 34px 28px 28px;
+    }
+
+    header .wrap, main {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 980px;
+      margin: 0;
+      color: #ffe4e0;
+      font-size: 15px;
+    }
+
+    main { padding: 24px 0 46px; }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      background: rgba(245, 247, 251, .94);
+      backdrop-filter: blur(8px);
+    }
+
+    input[type="search"], select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 11px 12px;
+      font-size: 14px;
+      color: var(--text);
+      background: #ffffff;
+    }
+
+    select { width: 220px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 10px 0 20px;
+    }
+
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .note, section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .note {
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .note h2, section h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .note p {
+      margin: 6px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    section h2 {
+      padding: 16px 18px 2px;
+    }
+
+    .section-summary {
+      margin: 0;
+      padding: 0 18px 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #344054;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .path {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    code {
+      background: #f2f4f7;
+      border: 1px solid #e4e7ec;
+      border-radius: 4px;
+      padding: 2px 5px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 12px;
+      color: #344054;
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 2px 8px;
+      margin: 1px 3px 1px 0;
+      background: var(--accent-soft);
+      color: #027a48;
+      border: 1px solid #abefc6;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .pill.warn {
+      background: var(--warning-soft);
+      color: #b54708;
+      border-color: #fedf89;
+    }
+
+    .pill.no {
+      background: #f2f4f7;
+      color: #667085;
+      border-color: #d0d5dd;
+    }
+
+    .hidden { display: none; }
+
+    @media (max-width: 820px) {
+      .toolbar, .stats { grid-template-columns: 1fr; }
+      select { width: 100%; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+      td { border: 0; padding: 7px 14px; }
+      td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+        margin-bottom: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Dokumentasi Menu Aktif Super Admin</h1>
+      <p class="subtitle">Kalbe Motoris Website - daftar menu yang aktif untuk level <strong>SUPER ADMIN</strong> berdasarkan database lokal <code>blesscom_kalbemotoris</code>, scope <code>hq</code>, dan aplikasi <code>SALES MOTORIS</code>.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="toolbar" aria-label="Filter dokumentasi">
+      <input id="search" type="search" placeholder="Cari menu, controller, fitur, atau deskripsi">
+      <select id="groupFilter">
+        <option value="">Semua grup menu</option>
+        <option>Dashboard</option>
+        <option>Dashboard Kalbe</option>
+        <option>Absence</option>
+        <option>Setting</option>
+        <option>Produk</option>
+        <option>Transaksi</option>
+        <option>Buku Besar</option>
+        <option>Keuangan</option>
+        <option>User</option>
+        <option>Report</option>
+        <option>Report Kalbe</option>
+      </select>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><strong>99</strong><span>menu tampil aktif</span></div>
+      <div class="stat"><strong>11</strong><span>grup menu utama</span></div>
+      <div class="stat"><strong>hq</strong><span>scope runtime</span></div>
+      <div class="stat"><strong>13 Mei 2026</strong><span>tanggal audit lokal</span></div>
+    </div>
+
+    <div class="note">
+      <h2>Sumber Verifikasi</h2>
+      <p>Database diambil dari <code>application/config/sevensmarts_config/default.php</code>: host <code>localhost</code>, user <code>root</code>, database <code>blesscom_kalbemotoris</code>.</p>
+      <p>Menu mengikuti alur runtime <code>application/helpers/pos_helper.php::getMenu()</code>: <code>m_level</code> -> <code>detailakses</code> -> <code>menu</code> -> <code>detailaksesmenu</code> -> <code>m_otoritasaplikasi</code>. Deskripsi ditulis dari nama menu, controller aktif di <code>application/controllers/hq</code>, model, JS tabel, dan kolom/metode utama yang ditemukan.</p>
+    </div>
+
+    <section data-group="Dashboard">
+      <h2>Dashboard</h2>
+      <p class="section-summary">Ringkasan performa dan aktivitas motoris dari sudut pandang operasional umum.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Visit Sales by Toko</strong><div class="path">Dashboard</div></td><td data-label="Controller"><code>hq/Mapactivity</code></td><td data-label="Deskripsi">Memantau kunjungan sales ke toko berdasarkan data check in, check out, lokasi, dan aktivitas kunjungan.</td><td data-label="Fitur"><span class="pill">DataTable aktivitas</span><span class="pill">peta/lokasi</span><span class="pill">filter sales dan toko</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Rangking Penjualan</strong><div class="path">Dashboard</div></td><td data-label="Controller"><code>hq/Rankingpenjualan</code></td><td data-label="Deskripsi">Menyajikan ranking penjualan per level organisasi seperti nasional, regional, area, team leader, dan sales.</td><td data-label="Fitur"><span class="pill">ranking bertingkat</span><span class="pill">filter organisasi</span><span class="pill">endpoint chart</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Dashboard</strong><div class="path">Dashboard</div></td><td data-label="Controller"><code>hq/Dashboardmotoris</code></td><td data-label="Deskripsi">Dashboard utama motoris untuk melihat penjualan berdasarkan qty, nominal, produk, area, team leader, dan sales.</td><td data-label="Fitur"><span class="pill">grafik penjualan</span><span class="pill">ranking produk</span><span class="pill">filter wilayah</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Map Activity Sales Self</strong><div class="path">Dashboard</div></td><td data-label="Controller"><code>hq/Mapsalesself</code></td><td data-label="Deskripsi">Menampilkan aktivitas sales secara mandiri, terutama posisi dan aktivitas kunjungan yang tercatat oleh sales.</td><td data-label="Fitur"><span class="pill">monitoring posisi</span><span class="pill">aktivitas personal</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Average</strong><div class="path">Dashboard</div></td><td data-label="Controller"><code>hq/Average</code></td><td data-label="Deskripsi">Mengukur rata-rata call, effective call, dan metrik aktivitas sales berdasarkan hari, minggu, dan wilayah.</td><td data-label="Fitur"><span class="pill">average call</span><span class="pill">average EC</span><span class="pill">analisis harian/mingguan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Nasional</strong><div class="path">Dashboard / Direct VS Subdist</div></td><td data-label="Controller"><code>hq/Directnasional</code></td><td data-label="Deskripsi">Membandingkan kinerja direct dan subdist pada level nasional.</td><td data-label="Fitur"><span class="pill">ranking nasional</span><span class="pill">direct vs subdist</span><span class="pill">drilldown wilayah</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Regional</strong><div class="path">Dashboard / Direct VS Subdist</div></td><td data-label="Controller"><code>hq/Directregional</code></td><td data-label="Deskripsi">Membandingkan kinerja direct dan subdist pada level regional.</td><td data-label="Fitur"><span class="pill">ranking regional</span><span class="pill">filter area</span><span class="pill">komparasi channel</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Area</strong><div class="path">Dashboard / Direct VS Subdist</div></td><td data-label="Controller"><code>hq/Directarea</code></td><td data-label="Deskripsi">Membandingkan kinerja direct dan subdist pada level area.</td><td data-label="Fitur"><span class="pill">ranking area</span><span class="pill">filter team leader</span><span class="pill">komparasi detail</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Dashboard Kalbe">
+      <h2>Dashboard Kalbe</h2>
+      <p class="section-summary">Dashboard dengan struktur team level Kalbe: regional, sub regional, team leader, cabang/area, dan sales.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Visit Sales by Toko</strong><div class="path">Dashboard Kalbe</div></td><td data-label="Controller"><code>hq/Mapactivitykalbe</code></td><td data-label="Deskripsi">Memantau kunjungan sales ke toko dalam struktur team Kalbe.</td><td data-label="Fitur"><span class="pill">peta aktivitas</span><span class="pill">data check in/out</span><span class="pill">struktur Kalbe</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill no">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Rangking Penjualan</strong><div class="path">Dashboard Kalbe</div></td><td data-label="Controller"><code>hq/Rangkingpenjualankalbe</code></td><td data-label="Deskripsi">Ranking penjualan untuk struktur Kalbe dari nasional sampai cabang dan sales.</td><td data-label="Fitur"><span class="pill">ranking nasional</span><span class="pill">ranking regional/sub regional</span><span class="pill">filter cabang</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill no">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Dashboard</strong><div class="path">Dashboard Kalbe</div></td><td data-label="Controller"><code>hq/Dashboardmotoriskalbe</code></td><td data-label="Deskripsi">Dashboard penjualan Kalbe berdasarkan qty, nominal, produk, wilayah, team, dan sales.</td><td data-label="Fitur"><span class="pill">grafik penjualan</span><span class="pill">filter team level</span><span class="pill">analisis produk</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill no">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Map Activity Sales Self</strong><div class="path">Dashboard Kalbe</div></td><td data-label="Controller"><code>hq/Mapsalesselfkalbe</code></td><td data-label="Deskripsi">Monitoring aktivitas sales secara personal pada struktur Kalbe.</td><td data-label="Fitur"><span class="pill">aktivitas sales</span><span class="pill">peta/lokasi</span><span class="pill">riwayat kunjungan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill no">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Absence">
+      <h2>Absence</h2>
+      <p class="section-summary">Pengelolaan absensi/check in dan data toko terkait aktivitas lapangan.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Absence</strong><div class="path">Absence</div></td><td data-label="Controller"><code>hq/Absence</code></td><td data-label="Deskripsi">Mengelola absensi sales, check in, lokasi toko, foto, serta data referensi untuk aktivitas lapangan.</td><td data-label="Fitur"><span class="pill">check in</span><span class="pill">upload Excel</span><span class="pill">download template/data</span><span class="pill">lat/lng toko</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Setting">
+      <h2>Setting</h2>
+      <p class="section-summary">Master data operasional yang menjadi fondasi transaksi, organisasi, wilayah, toko, foto, reward, dan alasan aktivitas.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Jenis Foto Activity</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Jenisfotoactivity</code></td><td data-label="Deskripsi">Master jenis foto untuk aktivitas motoris di toko.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Jenis Photo SMD</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Jenisfotoactivitysmd</code></td><td data-label="Deskripsi">Master jenis foto khusus aktivitas SMD.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">standarisasi foto</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Ketentuan</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Ketentuan</code></td><td data-label="Deskripsi">Pengaturan ketentuan dan detail ketentuan yang dipakai pada proses operasional.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">upload dinamis</span><span class="pill">hapus detail</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Provinsi</strong><div class="path">Setting / Wilayah Administrasi</div></td><td data-label="Controller"><code>hq/Provinsi</code></td><td data-label="Deskripsi">Master provinsi sebagai level wilayah administrasi tertinggi.</td><td data-label="Fitur"><span class="pill">upload/download template</span><span class="pill">wizard save</span><span class="pill">explore</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Kabupaten</strong><div class="path">Setting / Wilayah Administrasi</div></td><td data-label="Controller"><code>hq/Kabupaten</code></td><td data-label="Deskripsi">Master kabupaten/kota yang terhubung ke provinsi.</td><td data-label="Fitur"><span class="pill">upload Excel</span><span class="pill">approve/hapus</span><span class="pill">index mini</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Kecamatan</strong><div class="path">Setting / Wilayah Administrasi</div></td><td data-label="Controller"><code>hq/Kecamatan</code></td><td data-label="Deskripsi">Master kecamatan yang dipakai untuk alamat toko dan wilayah kerja.</td><td data-label="Fitur"><span class="pill">upload Excel</span><span class="pill">approve/hapus</span><span class="pill">download data</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Kelurahan</strong><div class="path">Setting / Wilayah Administrasi</div></td><td data-label="Controller"><code>hq/Kelurahan</code></td><td data-label="Deskripsi">Master kelurahan sebagai alamat detail toko dan titik kunjungan.</td><td data-label="Fitur"><span class="pill">upload Excel</span><span class="pill">approve/hapus</span><span class="pill">download data</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Regional</strong><div class="path">Setting / Team Kalbe</div></td><td data-label="Controller"><code>hq/Teamlevel1</code></td><td data-label="Deskripsi">Master level regional untuk struktur team Kalbe.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">explore</span><span class="pill">relasi team</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Sub Regional</strong><div class="path">Setting / Team Kalbe</div></td><td data-label="Controller"><code>hq/Teamlevel2</code></td><td data-label="Deskripsi">Master sub regional yang berada di bawah regional Kalbe.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">explore</span><span class="pill">hierarki team</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Team Leader</strong><div class="path">Setting / Team Kalbe</div></td><td data-label="Controller"><code>hq/Teamlevel3</code></td><td data-label="Deskripsi">Master team leader pada struktur Kalbe.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">explore</span><span class="pill">relasi cabang</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Cabang/Area</strong><div class="path">Setting / Team Kalbe</div></td><td data-label="Controller"><code>hq/Teamlevel4</code></td><td data-label="Deskripsi">Master cabang atau area pada struktur team Kalbe.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">explore</span><span class="pill">mapping cabang</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Jabatan Team Level</strong><div class="path">Setting / Team Kalbe</div></td><td data-label="Controller"><code>hq/Jabatanteamlevel</code></td><td data-label="Deskripsi">Master jabatan yang melekat pada struktur team level Kalbe.</td><td data-label="Fitur"><span class="pill">upload/download template</span><span class="pill">wizard save</span><span class="pill">explore</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Regional</strong><div class="path">Setting / Team</div></td><td data-label="Controller"><code>hq/Regional</code></td><td data-label="Deskripsi">Master regional untuk struktur team operasional umum.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">explore</span><span class="pill">struktur wilayah</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Area</strong><div class="path">Setting / Team</div></td><td data-label="Controller"><code>hq/Area</code></td><td data-label="Deskripsi">Master area yang berada di bawah regional operasional.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">explore</span><span class="pill">relasi regional</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Team Leader</strong><div class="path">Setting / Team</div></td><td data-label="Controller"><code>hq/Teamleader</code></td><td data-label="Deskripsi">Master team leader untuk struktur operasional umum.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">explore</span><span class="pill">mapping sales</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Jabatan</strong><div class="path">Setting / Organisasi</div></td><td data-label="Controller"><code>hq/Jabatankaryawan</code></td><td data-label="Deskripsi">Master jabatan karyawan yang menjadi referensi user dan operasional.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">struktur organisasi</span><span class="pill">hak jabatan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Pegawai</strong><div class="path">Setting / Organisasi</div></td><td data-label="Controller"><code>hq/Pegawai</code></td><td data-label="Deskripsi">Master pegawai/karyawan yang dipakai untuk user, jabatan, dan mapping team.</td><td data-label="Fitur"><span class="pill">download data</span><span class="pill">upload Excel</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Stok Per Jabatan</strong><div class="path">Setting / Organisasi</div></td><td data-label="Controller"><code>hq/Stokperjabatan</code></td><td data-label="Deskripsi">Mengatur produk/stok yang boleh dipakai oleh jabatan tertentu.</td><td data-label="Fitur"><span class="pill">upload Excel</span><span class="pill">approve/hapus</span><span class="pill">kontrol stok jabatan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Wilayah Kerja</strong><div class="path">Setting / Organisasi</div></td><td data-label="Controller"><code>hq/Wilayahkerja</code></td><td data-label="Deskripsi">Mapping wilayah kerja user terhadap toko atau area operasional.</td><td data-label="Fitur"><span class="pill">upload Excel</span><span class="pill">mapping user-wilayah</span><span class="pill">download data</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Type Toko</strong><div class="path">Setting / Toko</div></td><td data-label="Controller"><code>hq/Typetoko</code></td><td data-label="Deskripsi">Master tipe toko sebagai kategori outlet.</td><td data-label="Fitur"><span class="pill">upload/download template</span><span class="pill">wizard save</span><span class="pill">explore</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Group/Account</strong><div class="path">Setting / Toko</div></td><td data-label="Controller"><code>hq/Grouptoko</code></td><td data-label="Deskripsi">Master group/account toko untuk segmentasi pelanggan.</td><td data-label="Fitur"><span class="pill">upload/download template</span><span class="pill">wizard save</span><span class="pill">segmentasi toko</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Toko</strong><div class="path">Setting / Toko</div></td><td data-label="Controller"><code>hq/Toko</code></td><td data-label="Deskripsi">Master toko/outlet lengkap dengan tipe, alamat, wilayah, dan data operasional.</td><td data-label="Fitur"><span class="pill">upload/download template</span><span class="pill">data lokasi</span><span class="pill">index mini</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>DC Toko</strong><div class="path">Setting / Toko</div></td><td data-label="Controller"><code>hq/Dctoko</code></td><td data-label="Deskripsi">Master distribution center atau DC yang terhubung dengan toko.</td><td data-label="Fitur"><span class="pill">upload/download template</span><span class="pill">mapping DC</span><span class="pill">explore</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Remark</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Remark</code></td><td data-label="Deskripsi">Master remark/keterangan untuk aktivitas lapangan.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">referensi aktivitas</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Remark Foto</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Remarkfoto</code></td><td data-label="Deskripsi">Master remark yang terkait dengan bukti foto aktivitas.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">standarisasi bukti foto</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Reason</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Reason</code></td><td data-label="Deskripsi">Master alasan yang dipakai untuk kondisi atau keputusan operasional tertentu.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">hak akses</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Jenis Kondisi Mobil</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Jeniskondisimobil</code></td><td data-label="Deskripsi">Master pilihan kondisi mobil untuk input kondisi kendaraan.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">referensi kondisi</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Jenis Pengeluaran</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Pengeluaran</code></td><td data-label="Deskripsi">Master jenis pengeluaran untuk transaksi input pengeluaran.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">kategori biaya</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Jenis Foto Reward</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Jenisfotoreward</code></td><td data-label="Deskripsi">Master jenis foto yang dibutuhkan pada proses reward toko.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">standarisasi foto reward</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Master Reward</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Masterreward</code></td><td data-label="Deskripsi">Master program reward dan detail persyaratan reward toko.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">tanggal reward</span><span class="pill">explore</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Jadwal Reward Toko</strong><div class="path">Setting</div></td><td data-label="Controller"><code>hq/Jadwalrewardtoko</code></td><td data-label="Deskripsi">Mengatur jadwal reward toko, termasuk referensi program dan kebutuhan bukti.</td><td data-label="Fitur"><span class="pill">QR code</span><span class="pill">upload Excel</span><span class="pill">setting limit/harga</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Produk">
+      <h2>Produk</h2>
+      <p class="section-summary">Master produk, satuan, kategori, log perubahan produk, dan pengaturan harga.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Kategori Produk</strong><div class="path">Produk</div></td><td data-label="Controller"><code>hq/Kelompokproduk</code></td><td data-label="Deskripsi">Master kategori atau kelompok produk.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">hak akses</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Satuan</strong><div class="path">Produk</div></td><td data-label="Controller"><code>hq/Satuanbarang</code></td><td data-label="Deskripsi">Master satuan barang untuk transaksi produk.</td><td data-label="Fitur"><span class="pill">CRUD master</span><span class="pill">upload Excel</span><span class="pill">rasio satuan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Produk</strong><div class="path">Produk</div></td><td data-label="Controller"><code>hq/Produk</code></td><td data-label="Deskripsi">Master produk/barang yang dipakai pada pembelian, penjualan, distribusi, stok, dan reward.</td><td data-label="Fitur"><span class="pill">QR code</span><span class="pill">upload Excel</span><span class="pill">multi harga/satuan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Log Produk</strong><div class="path">Produk</div></td><td data-label="Controller"><code>hq/Detailproduk</code></td><td data-label="Deskripsi">Melihat detail dan riwayat data produk.</td><td data-label="Fitur"><span class="pill">load detail</span><span class="pill">riwayat produk</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Setting Harga Micasa</strong><div class="path">Produk</div></td><td data-label="Controller"><code>hq/Settinghargamicasa</code></td><td data-label="Deskripsi">Pengaturan harga khusus Micasa dengan pola transaksi master-detail.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">save sub</span><span class="pill">explore</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Transaksi">
+      <h2>Transaksi</h2>
+      <p class="section-summary">Input transaksi lapangan dan back office: pembelian, pengembalian, penjualan, distribusi, foto, stok, POSM, pengeluaran, dan reward.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Pembelian Produk</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Pembelianproduk</code></td><td data-label="Deskripsi">Input pembelian produk dengan header transaksi dan detail barang.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">retur</span><span class="pill">cetak nota</span><span class="pill">foto bukti</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Pengembalian Produk</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Pengembalianproduk</code></td><td data-label="Deskripsi">Input pengembalian produk dari toko/sales sesuai transaksi terkait.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">retur</span><span class="pill">cetak nota</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Penjualan</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Penjualanproduk</code></td><td data-label="Deskripsi">Input penjualan produk dengan detail barang, qty, harga, total, dan foto transaksi.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">cetak nota</span><span class="pill">grand total</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Checklist Distribusi</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Checklistdistribusi</code></td><td data-label="Deskripsi">Checklist distribusi produk per toko atau aktivitas distribusi.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">checklist produk</span><span class="pill">cetak nota</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Checklist Distribusi By Kategori</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Checklistdistribusibykategori</code></td><td data-label="Deskripsi">Checklist distribusi yang dikelompokkan berdasarkan kategori produk.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">kategori produk</span><span class="pill">cetak nota</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Foto Activity</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Fotoactivity</code></td><td data-label="Deskripsi">Input foto aktivitas motoris di toko sebagai bukti kunjungan dan eksekusi program.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">foto bukti</span><span class="pill">jenis foto</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Foto Activity SMD</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Fotoactivitysmd</code></td><td data-label="Deskripsi">Input foto aktivitas khusus SMD.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">save sub</span><span class="pill">foto SMD</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Input PO</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Inputpo</code></td><td data-label="Deskripsi">Input purchase order atau rencana order produk.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">cetak nota</span><span class="pill">detail barang</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Input Ijin</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Inputijin</code></td><td data-label="Deskripsi">Input izin sales/karyawan dengan tanggal dan detail pengajuan.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">get tanggal</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Input Stok</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Inputstok</code></td><td data-label="Deskripsi">Input stok lapangan atau stok SMD berdasarkan barang dan qty.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">cetak nota</span><span class="pill">detail stok</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Setor Uang</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Serahuang</code></td><td data-label="Deskripsi">Input setoran uang dari hasil aktivitas penjualan.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">cetak nota</span><span class="pill">kontrol setoran</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Pemasangan POSM</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Pemasanganposm</code></td><td data-label="Deskripsi">Input pemasangan material POSM di toko.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">produk POSM</span><span class="pill">cetak nota</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Input Kondisi Mobil</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Kondisimobil</code></td><td data-label="Deskripsi">Input kondisi mobil/kendaraan yang dipakai operasional.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">jenis kondisi</span><span class="pill">save sub</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Input Pengeluaran</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Inputpengeluaran</code></td><td data-label="Deskripsi">Input pengeluaran operasional berdasarkan jenis pengeluaran.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">jenis biaya</span><span class="pill">save sub</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Input Reward Toko</strong><div class="path">Transaksi</div></td><td data-label="Controller"><code>hq/Inputrewardtoko</code></td><td data-label="Deskripsi">Input realisasi reward toko berdasarkan jadwal dan master reward.</td><td data-label="Fitur"><span class="pill">master-detail</span><span class="pill">cetak nota</span><span class="pill">foto reward</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Buku Besar">
+      <h2>Buku Besar</h2>
+      <p class="section-summary">Monitoring detail uang masuk dari aktivitas transaksi.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Detail Uang Masuk</strong><div class="path">Buku Besar</div></td><td data-label="Controller"><code>hq/Detailuangmasuk</code></td><td data-label="Deskripsi">Melihat detail uang masuk dan data transaksi terkait.</td><td data-label="Fitur"><span class="pill">load detail</span><span class="pill">DataTable</span><span class="pill">audit uang masuk</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Keuangan">
+      <h2>Keuangan</h2>
+      <p class="section-summary">Proses periodik untuk menutup transaksi dan menyiapkan periode berikutnya.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Bulanan</strong><div class="path">Keuangan / Tutup Buku</div></td><td data-label="Controller"><code>hq/Tutupbuku</code></td><td data-label="Deskripsi">Menjalankan proses tutup buku bulanan untuk transaksi dan data periode.</td><td data-label="Fitur"><span class="pill">tutup buku</span><span class="pill">master-detail</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="User">
+      <h2>User</h2>
+      <p class="section-summary">Administrasi akun, level, dan hak akses aplikasi.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>User</strong><div class="path">User</div></td><td data-label="Controller"><code>hq/User</code></td><td data-label="Deskripsi">Mengelola akun pengguna, nama lengkap, level, avatar, status login, dan reset password.</td><td data-label="Fitur"><span class="pill">CRUD user</span><span class="pill">reset password</span><span class="pill">hak akses menu</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Level</strong><div class="path">User</div></td><td data-label="Controller"><code>hq/Level</code></td><td data-label="Deskripsi">Mengelola level user dan konfigurasi hak akses menu per level.</td><td data-label="Fitur"><span class="pill">CRUD level</span><span class="pill">save akses</span><span class="pill">otoritas menu</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Report">
+      <h2>Report</h2>
+      <p class="section-summary">Laporan operasional untuk stok, penjualan, pembelian, aktivitas sales, kunjungan, POSM, pengeluaran, dan reward.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Lap Stok</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Stockreport</code></td><td data-label="Deskripsi">Laporan stok produk untuk melihat posisi stok dan pergerakan barang.</td><td data-label="Fitur"><span class="pill">rekalkulasi</span><span class="pill">DataTable</span><span class="pill">filter produk</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Stok Harian</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Stokreportharian</code></td><td data-label="Deskripsi">Laporan stok harian untuk monitoring saldo dan aktivitas per tanggal.</td><td data-label="Fitur"><span class="pill">rekalkulasi</span><span class="pill">laporan harian</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill no">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Penjualan</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanpenjualan</code></td><td data-label="Deskripsi">Laporan detail penjualan berisi tanggal, regional, area, team leader, sales, toko, produk, qty, harga, dan total.</td><td data-label="Fitur"><span class="pill">filter wilayah</span><span class="pill">detail SKU</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Download Laporan Penjualan</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Downloadlappenjualan</code></td><td data-label="Deskripsi">Menu khusus unduh laporan penjualan dalam format data siap olah.</td><td data-label="Fitur"><span class="pill">download laporan</span><span class="pill">filter penjualan</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Check In Check Out</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporancico</code></td><td data-label="Deskripsi">Laporan check in dan check out sales di toko.</td><td data-label="Fitur"><span class="pill">jam CI/CO</span><span class="pill">foto dan lokasi</span><span class="pill">durasi kunjungan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Call Rekap Motoris</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporancallrekap</code></td><td data-label="Deskripsi">Rekap call atau kunjungan motoris berdasarkan periode dan struktur wilayah.</td><td data-label="Fitur"><span class="pill">rekap call</span><span class="pill">filter sales</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Out Of Stock</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanoos</code></td><td data-label="Deskripsi">Laporan kondisi out of stock untuk produk/toko yang perlu perhatian.</td><td data-label="Fitur"><span class="pill">monitor OOS</span><span class="pill">filter produk/toko</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Pembelian</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanpembelian</code></td><td data-label="Deskripsi">Laporan pembelian produk berdasarkan transaksi dan detail barang.</td><td data-label="Fitur"><span class="pill">detail pembelian</span><span class="pill">filter distributor</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Rekap Pembelian</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekappembelian</code></td><td data-label="Deskripsi">Rekap pembelian untuk membaca total pembelian secara ringkas.</td><td data-label="Fitur"><span class="pill">rekap transaksi</span><span class="pill">summary pembelian</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Pengembalian</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekappengembalian</code></td><td data-label="Deskripsi">Rekap pengembalian produk dari transaksi retur/pengembalian.</td><td data-label="Fitur"><span class="pill">rekap pengembalian</span><span class="pill">filter periode</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Rekap Penjualan</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekappenjualan</code></td><td data-label="Deskripsi">Rekap penjualan untuk melihat total penjualan per periode, toko, sales, atau wilayah.</td><td data-label="Fitur"><span class="pill">summary penjualan</span><span class="pill">filter wilayah</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Rekap Checklist Distribusi</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekapchecklistdistribusi</code></td><td data-label="Deskripsi">Rekap hasil checklist distribusi produk.</td><td data-label="Fitur"><span class="pill">rekap checklist</span><span class="pill">monitor distribusi</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Rekap Checklist Distribusi By Kategori</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekapchecklistkategori</code></td><td data-label="Deskripsi">Rekap checklist distribusi yang diringkas berdasarkan kategori produk.</td><td data-label="Fitur"><span class="pill">rekap kategori</span><span class="pill">monitor distribusi</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Rekap Setor Uang</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekapsetoruang</code></td><td data-label="Deskripsi">Rekap setoran uang dari transaksi sales.</td><td data-label="Fitur"><span class="pill">rekap setoran</span><span class="pill">kontrol kas</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Rekap Input PO</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekapinputpo</code></td><td data-label="Deskripsi">Rekap input PO untuk melihat order yang masuk dari lapangan.</td><td data-label="Fitur"><span class="pill">rekap PO</span><span class="pill">filter periode</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Stock SMD</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanstocksmd</code></td><td data-label="Deskripsi">Laporan stok untuk SMD atau stok yang terkait jabatan SMD.</td><td data-label="Fitur"><span class="pill">stok SMD</span><span class="pill">filter produk</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Foto Activity SMD</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanfotoactivitysmd</code></td><td data-label="Deskripsi">Laporan foto aktivitas SMD.</td><td data-label="Fitur"><span class="pill">bukti foto</span><span class="pill">jenis foto SMD</span><span class="pill">filter periode</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Foto Activity</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanfotoactivity</code></td><td data-label="Deskripsi">Laporan foto aktivitas motoris di toko.</td><td data-label="Fitur"><span class="pill">bukti foto</span><span class="pill">jenis foto</span><span class="pill">filter sales/toko</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Penjualan Per Motoris Per Toko</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Lappertoko</code></td><td data-label="Deskripsi">Laporan penjualan yang diringkas per motoris dan per toko.</td><td data-label="Fitur"><span class="pill">per motoris</span><span class="pill">per toko</span><span class="pill">summary sales</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Jual Motoris Per Toko Per SKU</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Lapjualmotoristokosku</code></td><td data-label="Deskripsi">Laporan penjualan motoris per toko sampai level SKU produk.</td><td data-label="Fitur"><span class="pill">per SKU</span><span class="pill">per toko</span><span class="pill">analisis produk</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Per Toko Per SKU</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Lapperskutoko</code></td><td data-label="Deskripsi">Laporan penjualan atau distribusi per toko dan per SKU.</td><td data-label="Fitur"><span class="pill">per toko</span><span class="pill">per SKU</span><span class="pill">detail produk</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Ijin</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanijin</code></td><td data-label="Deskripsi">Laporan pengajuan izin dari input izin.</td><td data-label="Fitur"><span class="pill">rekap izin</span><span class="pill">filter tanggal</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Pemasangan POSM</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporanpemasanganposm</code></td><td data-label="Deskripsi">Laporan pemasangan POSM di toko.</td><td data-label="Fitur"><span class="pill">rekap POSM</span><span class="pill">filter toko</span><span class="pill">bukti pemasangan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Input Kondisi Mobil</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporaninputkondisimobil</code></td><td data-label="Deskripsi">Laporan kondisi mobil yang sudah diinput oleh user.</td><td data-label="Fitur"><span class="pill">rekap kondisi</span><span class="pill">jenis kondisi</span><span class="pill">filter periode</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Input Pengeluaran</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laporaninputpengeluaran</code></td><td data-label="Deskripsi">Laporan pengeluaran operasional berdasarkan input pengeluaran.</td><td data-label="Fitur"><span class="pill">rekap biaya</span><span class="pill">jenis pengeluaran</span><span class="pill">filter periode</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Reward Toko</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprewardtoko</code></td><td data-label="Deskripsi">Laporan realisasi reward toko.</td><td data-label="Fitur"><span class="pill">reward toko</span><span class="pill">bukti foto</span><span class="pill">filter jadwal</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill no">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Lap Rekap Reward Toko</strong><div class="path">Report</div></td><td data-label="Controller"><code>hq/Laprekapreward</code></td><td data-label="Deskripsi">Rekap reward toko untuk melihat ringkasan pencapaian dan realisasi reward.</td><td data-label="Fitur"><span class="pill">rekap reward</span><span class="pill">summary toko</span><span class="pill">filter periode</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill no">Edit</span><span class="pill no">Hapus</span><span class="pill no">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-group="Report Kalbe">
+      <h2>Report Kalbe</h2>
+      <p class="section-summary">Laporan versi team level Kalbe, mengikuti struktur regional, sub regional, team leader, cabang/area, dan sales.</p>
+      <table>
+        <thead><tr><th>Menu</th><th>Controller</th><th>Deskripsi</th><th>Fitur dan Keunggulan</th><th>Akses</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Menu"><strong>Lap Penjualan</strong><div class="path">Report Kalbe</div></td><td data-label="Controller"><code>hq/Laporanpenjualanteamlevel</code></td><td data-label="Deskripsi">Laporan penjualan berbasis struktur team level Kalbe.</td><td data-label="Fitur"><span class="pill">filter team level</span><span class="pill">detail SKU</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Download Laporan Penjualan</strong><div class="path">Report Kalbe</div></td><td data-label="Controller"><code>hq/Downloadlappenjualanteamlevel</code></td><td data-label="Deskripsi">Unduh laporan penjualan versi team level Kalbe.</td><td data-label="Fitur"><span class="pill">download laporan</span><span class="pill">filter team level</span><span class="pill">data siap olah</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Check In Check Out</strong><div class="path">Report Kalbe</div></td><td data-label="Controller"><code>hq/Laporancicoteamlevel</code></td><td data-label="Deskripsi">Laporan check in/check out dengan struktur team level Kalbe.</td><td data-label="Fitur"><span class="pill">jam CI/CO</span><span class="pill">filter team level</span><span class="pill">durasi kunjungan</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+          <tr><td data-label="Menu"><strong>Laporan Call Rekap Motoris</strong><div class="path">Report Kalbe</div></td><td data-label="Controller"><code>hq/Laporancallrekapteamlevel</code></td><td data-label="Deskripsi">Rekap call motoris berdasarkan struktur team level Kalbe.</td><td data-label="Fitur"><span class="pill">rekap call</span><span class="pill">filter team level</span><span class="pill">DataTable</span></td><td data-label="Akses"><span class="pill">Tambah</span><span class="pill">Edit</span><span class="pill">Hapus</span><span class="pill">Cetak</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var search = document.getElementById('search');
+      var group = document.getElementById('groupFilter');
+      var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-group]'));
+
+      function normalize(value) {
+        return (value || '').toLowerCase().trim();
+      }
+
+      function applyFilter() {
+        var q = normalize(search.value);
+        var selected = group.value;
+
+        sections.forEach(function (section) {
+          var groupMatch = !selected || section.getAttribute('data-group') === selected;
+          var rows = Array.prototype.slice.call(section.querySelectorAll('tbody tr'));
+          var shown = 0;
+
+          rows.forEach(function (row) {
+            var textMatch = !q || normalize(row.textContent).indexOf(q) !== -1;
+            var visible = groupMatch && textMatch;
+            row.classList.toggle('hidden', !visible);
+            if (visible) shown += 1;
+          });
+
+          section.classList.toggle('hidden', shown === 0);
+        });
+      }
+
+      search.addEventListener('input', applyFilter);
+      group.addEventListener('change', applyFilter);
+    })();
+  </script>
+</body>
+</html>
