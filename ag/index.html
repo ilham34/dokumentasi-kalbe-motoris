@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alur Aplikasi — Kalbe Motoris</title>
+  <title>Alur Aplikasi — Aplikasi SFA</title>
   <link rel="stylesheet" href="ag/style.css">
 </head>
 <body>
 
 <!-- HERO -->
 <div class="hero">
-  <h1><span>Kalbe Motoris</span></h1>
+  <h1><span>Aplikasi SFA</span></h1>
   <p>Tracking &amp; Reporting — Dokumentasi Alur Sistem</p>
   <div class="badge-row">
     <span class="badge badge-orange">🌐 Website Admin</span>
@@ -24,8 +24,10 @@
   <div class="tabs">
     <div class="tab active" onclick="showTab('web')">🌐 Alur Website</div>
     <div class="tab" onclick="showTab('android')">📱 Alur Android</div>
+    <div class="tab" onclick="showTab('order')">🛒 Taking Order</div>
     <div class="tab" onclick="showTab('menu')">📋 Menu &amp; Fitur</div>
     <div class="tab" onclick="showTab('keunggulan')">🏆 Keunggulan</div>
+    <div class="tab" onclick="showTab('api')">🔗 API Integration</div>
   </div>
 
   <!-- ===== TAB: WEBSITE ===== -->
@@ -61,6 +63,363 @@
         <div class="flow-step"><span class="step-num">8</span><h4>Kunjungan Berikutnya</h4><p>Sales berpindah ke toko lain, ulangi proses Check In → Transaksi → Check Out. Jumlah kunjungan hari ini tercatat di Home.</p></div>
       </div>
     </div>
+  </div>
+
+  <!-- ===== TAB: TAKING ORDER ===== -->
+  <div id="tab-order" class="tab-content">
+
+    <!-- Intro Banner -->
+    <div class="section">
+      <div class="order-intro-banner">
+        <div class="order-intro-icon">🛒</div>
+        <div>
+          <h2>Taking Order Process</h2>
+          <p>Fitur inti pemesanan produk dari outlet. Sales wajib <strong>Check In</strong> terlebih dahulu sebelum dapat melakukan transaksi pemesanan.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prerequisite: Check-in -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-blue">📍</div> Prasyarat: Check In ke Toko</div>
+      <div class="prereq-card">
+        <div class="prereq-badge">WAJIB</div>
+        <div class="prereq-content">
+          <h4>Check In Harus Berhasil Sebelum Taking Order</h4>
+          <p>Sales harus melakukan check in ke toko terlebih dahulu. Sistem akan memvalidasi lokasi GPS dan foto check-in sebelum menu transaksi tersedia.</p>
+          <div class="prereq-steps">
+            <div class="prereq-step">
+              <div class="prereq-step-num">1</div>
+              <span>Buka aplikasi → Pilih toko terdekat (GPS)</span>
+            </div>
+            <div class="prereq-step-arrow">→</div>
+            <div class="prereq-step">
+              <div class="prereq-step-num">2</div>
+              <span>Foto Check In (wajib)</span>
+            </div>
+            <div class="prereq-step-arrow">→</div>
+            <div class="prereq-step">
+              <div class="prereq-step-num">3</div>
+              <span>Check In berhasil ✓</span>
+            </div>
+            <div class="prereq-step-arrow">→</div>
+            <div class="prereq-step active">
+              <div class="prereq-step-num">4</div>
+              <span>Menu Transaksi terbuka</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 6: Taking Order Process -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-orange">🛒</div> 6. Taking Order Process (Fitur Utama)</div>
+      <p style="color:var(--text2);margin-bottom:24px;">Fitur inti untuk melakukan pemesanan produk dari outlet. Setelah check-in berhasil, sales dapat mulai memasukkan order.</p>
+      
+      <div class="order-flow">
+        <!-- Step A -->
+        <div class="order-flow-step">
+          <div class="order-step-header">
+            <div class="order-step-letter">A</div>
+            <h4>Masuk Menu Pemesanan</h4>
+          </div>
+          <div class="order-step-body">
+            <p>Setelah check-in berhasil di toko:</p>
+            <div class="order-action-list">
+              <div class="order-action">
+                <span class="order-action-icon">👆</span>
+                <span>Klik menu <strong>"Pemesanan"</strong> dari daftar menu transaksi</span>
+              </div>
+              <div class="order-action">
+                <span class="order-action-icon">➕</span>
+                <span>Klik <strong>"Tambah Produk"</strong> untuk mulai memilih produk</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-step-connector"></div>
+        </div>
+
+        <!-- Step B -->
+        <div class="order-flow-step">
+          <div class="order-step-header">
+            <div class="order-step-letter">B</div>
+            <h4>Pilih Brand & Produk</h4>
+          </div>
+          <div class="order-step-body">
+            <div class="order-action-list">
+              <div class="order-action">
+                <span class="order-action-icon">🏷️</span>
+                <span>Pilih <strong>kategori brand</strong> dari daftar brand yang tersedia</span>
+              </div>
+              <div class="order-action">
+                <span class="order-action-icon">📦</span>
+                <span>Pilih <strong>produk spesifik</strong> yang ingin dibeli oleh outlet</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-step-connector"></div>
+        </div>
+
+        <!-- Step C -->
+        <div class="order-flow-step">
+          <div class="order-step-header">
+            <div class="order-step-letter">C</div>
+            <h4>Input Quantity</h4>
+          </div>
+          <div class="order-step-body">
+            <div class="order-action-list">
+              <div class="order-action">
+                <span class="order-action-icon">🔢</span>
+                <span>Sales memasukkan <strong>jumlah pembelian</strong> (quantity) produk yang diinginkan outlet</span>
+              </div>
+            </div>
+            <div class="order-input-demo">
+              <label>Qty:</label>
+              <div class="order-input-box">12</div>
+              <span class="order-input-unit">pcs</span>
+            </div>
+          </div>
+          <div class="order-step-connector"></div>
+        </div>
+
+        <!-- Step D -->
+        <div class="order-flow-step">
+          <div class="order-step-header">
+            <div class="order-step-letter">D</div>
+            <h4>Tambah ke Daftar Pembelian</h4>
+          </div>
+          <div class="order-step-body">
+            <div class="order-action-list">
+              <div class="order-action">
+                <span class="order-action-icon">🛒</span>
+                <span>Produk dimasukkan ke <strong>cart/list pembelian</strong></span>
+              </div>
+              <div class="order-action">
+                <span class="order-action-icon">🔄</span>
+                <span>Ulangi langkah A–D untuk menambah produk lain</span>
+              </div>
+            </div>
+            <!-- Mini cart preview -->
+            <div class="order-cart-preview">
+              <div class="order-cart-title">📋 Daftar Pembelian</div>
+              <div class="order-cart-item">
+                <span class="order-cart-product">Promag Tablet</span>
+                <span class="order-cart-qty">x12</span>
+              </div>
+              <div class="order-cart-item">
+                <span class="order-cart-product">Procold Flu & Batuk</span>
+                <span class="order-cart-qty">x24</span>
+              </div>
+              <div class="order-cart-item">
+                <span class="order-cart-product">Komix Herbal</span>
+                <span class="order-cart-qty">x6</span>
+              </div>
+              <div class="order-cart-total">
+                <span>Total: 3 produk</span>
+                <span>42 pcs</span>
+              </div>
+            </div>
+          </div>
+          <div class="order-step-connector"></div>
+        </div>
+
+        <!-- Step E -->
+        <div class="order-flow-step final">
+          <div class="order-step-header">
+            <div class="order-step-letter">E</div>
+            <h4>Simpan & Kirim Order</h4>
+          </div>
+          <div class="order-step-body">
+            <div class="order-action-list">
+              <div class="order-action">
+                <span class="order-action-icon">💾</span>
+                <span><strong>Simpan</strong> transaksi pemesanan</span>
+              </div>
+              <div class="order-action">
+                <span class="order-action-icon">📤</span>
+                <span>Klik <strong>"Kirimkan"</strong> untuk mengirim order ke server</span>
+              </div>
+              <div class="order-action">
+                <span class="order-action-icon">✅</span>
+                <span><strong>Konfirmasi pembelian</strong> — order berhasil dikirim & tercatat</span>
+              </div>
+            </div>
+            <div class="order-success-badge">
+              <span>✓</span> Order Berhasil Dikirim
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 7: Hapus Produk -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-red">🗑️</div> 7. Hapus Produk dari Order</div>
+      <p style="color:var(--text2);margin-bottom:24px;">Fitur untuk menghapus item produk sebelum order dikirim, memungkinkan sales mengoreksi kesalahan atau menyesuaikan pesanan.</p>
+      
+      <div class="delete-feature-grid">
+        <!-- Fungsi -->
+        <div class="delete-card fungsi">
+          <h4>⚡ Fungsi</h4>
+          <ul>
+            <li>Mengoreksi kesalahan input produk atau quantity</li>
+            <li>Menghapus produk yang tidak jadi dibeli oleh outlet</li>
+            <li>Mengosongkan seluruh daftar pembelian sekaligus</li>
+          </ul>
+        </div>
+
+        <!-- Alur -->
+        <div class="delete-card alur">
+          <h4>📋 Alur Hapus Produk</h4>
+          <div class="delete-flow">
+            <div class="delete-step">
+              <div class="delete-step-num">1</div>
+              <div class="delete-step-content">
+                <strong>Klik "Kosongkan"</strong>
+                <p>Pada daftar pembelian, klik tombol Kosongkan untuk produk yang ingin dihapus</p>
+              </div>
+            </div>
+            <div class="delete-step">
+              <div class="delete-step-num">2</div>
+              <div class="delete-step-content">
+                <strong>Konfirmasi Hapus</strong>
+                <p>Sistem menampilkan dialog konfirmasi "Apakah Anda yakin menghapus produk ini?"</p>
+              </div>
+            </div>
+            <div class="delete-step">
+              <div class="delete-step-num">3</div>
+              <div class="delete-step-content">
+                <strong>Produk Dihapus ✓</strong>
+                <p>Produk berhasil dihapus dari daftar pembelian, total diperbarui otomatis</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Demo -->
+      <div class="delete-demo">
+        <div class="delete-demo-title">Demo: Hapus Produk dari Cart</div>
+        <div class="delete-demo-item">
+          <span class="delete-demo-product">📦 Promag Tablet</span>
+          <span class="delete-demo-qty">x12</span>
+          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑️ Kosongkan</button>
+        </div>
+        <div class="delete-demo-item">
+          <span class="delete-demo-product">📦 Procold Flu & Batuk</span>
+          <span class="delete-demo-qty">x24</span>
+          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑️ Kosongkan</button>
+        </div>
+        <div class="delete-demo-item">
+          <span class="delete-demo-product">📦 Komix Herbal</span>
+          <span class="delete-demo-qty">x6</span>
+          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑️ Kosongkan</button>
+        </div>
+        <p class="delete-demo-hint">💡 Klik tombol "Kosongkan" untuk melihat efek hapus produk</p>
+      </div>
+    </div>
+
+    <!-- Feature 8: Catatan / No Order Notes -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-purple">📝</div> 8. Catatan / No Order Notes</div>
+      <p style="color:var(--text2);margin-bottom:24px;">Fitur pencatatan alasan outlet tidak melakukan pembelian. Data ini digunakan untuk monitoring dan analisa strategi penjualan.</p>
+      
+      <div class="noorder-grid">
+        <!-- Fungsi -->
+        <div class="noorder-card">
+          <div class="noorder-card-header fungsi-header">
+            <span>📊</span> Fungsi
+          </div>
+          <div class="noorder-card-body">
+            <ul>
+              <li><strong>Monitoring alasan no order</strong> — Rekap data mengapa outlet tidak membeli</li>
+              <li><strong>Analisa penjualan</strong> — Identifikasi pola dan hambatan penjualan per area</li>
+              <li><strong>Strategi follow-up</strong> — Data untuk kunjungan berikutnya</li>
+              <li><strong>Reporting ke manajemen</strong> — Laporan lengkap alasan no order</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Contoh Alasan -->
+        <div class="noorder-card">
+          <div class="noorder-card-header contoh-header">
+            <span>📋</span> Contoh Alasan No Order
+          </div>
+          <div class="noorder-card-body">
+            <div class="noorder-reasons">
+              <div class="noorder-reason">
+                <span class="reason-icon">📦</span>
+                <div>
+                  <strong>Stok masih ada</strong>
+                  <p>Outlet masih memiliki stok produk yang cukup</p>
+                </div>
+              </div>
+              <div class="noorder-reason">
+                <span class="reason-icon">🚪</span>
+                <div>
+                  <strong>Toko tutup</strong>
+                  <p>Outlet sedang tutup saat sales berkunjung</p>
+                </div>
+              </div>
+              <div class="noorder-reason">
+                <span class="reason-icon">🚫</span>
+                <div>
+                  <strong>Tidak membutuhkan barang</strong>
+                  <p>Outlet tidak memerlukan produk saat ini</p>
+                </div>
+              </div>
+              <div class="noorder-reason">
+                <span class="reason-icon">💰</span>
+                <div>
+                  <strong>Belum ada budget</strong>
+                  <p>Outlet belum memiliki anggaran untuk pembelian</p>
+                </div>
+              </div>
+              <div class="noorder-reason">
+                <span class="reason-icon">🔄</span>
+                <div>
+                  <strong>Ganti brand / kompetitor</strong>
+                  <p>Outlet beralih ke produk kompetitor</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alur No Order -->
+      <div class="noorder-flow-section">
+        <h4 class="noorder-flow-title">📋 Alur Pencatatan No Order</h4>
+        <div class="noorder-flow">
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon">📍</div>
+            <div class="noorder-flow-label">Check In<br><small>ke toko</small></div>
+          </div>
+          <div class="noorder-flow-arrow">→</div>
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon">🚫</div>
+            <div class="noorder-flow-label">Tidak Ada<br><small>order</small></div>
+          </div>
+          <div class="noorder-flow-arrow">→</div>
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon">📝</div>
+            <div class="noorder-flow-label">Pilih Alasan<br><small>no order</small></div>
+          </div>
+          <div class="noorder-flow-arrow">→</div>
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon">💬</div>
+            <div class="noorder-flow-label">Tambah<br><small>catatan</small></div>
+          </div>
+          <div class="noorder-flow-arrow">→</div>
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon">💾</div>
+            <div class="noorder-flow-label">Simpan &<br><small>check out</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ===== TAB: MENU ===== -->
@@ -227,6 +586,294 @@
     </div>
   </div>
 
+  <!-- ===== TAB: API INTEGRATION ===== -->
+  <div id="tab-api" class="tab-content">
+
+    <!-- API Intro Banner -->
+    <div class="section">
+      <div class="order-intro-banner" style="border-color:rgba(6,182,212,.25);background:linear-gradient(135deg,rgba(6,182,212,.1) 0%,rgba(59,130,246,.08) 50%,rgba(168,85,247,.06) 100%);">
+        <div class="order-intro-icon" style="background:rgba(6,182,212,.15);">🔗</div>
+        <div>
+          <h2 style="background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">API Integration DMS Subdist</h2>
+          <p>REST API berbasis JSON dengan autentikasi JWT untuk integrasi data antara sistem subdistributor dengan aplikasi DMS. Base URL: <code class="api-code">http://34.101.178.201</code></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authentication -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-cyan">🔐</div> 1. Authentication API</div>
+      <p style="color:var(--text2);margin-bottom:20px;">Sistem menggunakan JWT Token Authentication. Token wajib dikirim pada setiap request API.</p>
+      <div class="api-card">
+        <div class="api-method-bar">
+          <span class="api-method post">POST</span>
+          <span class="api-endpoint">/authenticate</span>
+          <span class="api-badge-expire">⏱ Token berlaku 5 jam</span>
+        </div>
+        <div class="api-body-grid">
+          <div>
+            <div class="api-label">Request Body</div>
+            <pre class="api-pre">{
+  "username": "subdist_test",
+  "password": "test"
+}</pre>
+          </div>
+          <div>
+            <div class="api-label">Response</div>
+            <pre class="api-pre">{
+  "token": "JWT_TOKEN"
+}</pre>
+            <div class="api-label" style="margin-top:12px;">Header (untuk semua API)</div>
+            <pre class="api-pre">Authorization: Bearer &lt;JWT_TOKEN&gt;</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stock API -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-green">📦</div> 2. Stock API</div>
+      <p style="color:var(--text2);margin-bottom:20px;">API untuk menambahkan data stok barang secara bulk dan sinkronisasi data stok distributor.</p>
+      <div class="api-card">
+        <div class="api-method-bar">
+          <span class="api-method post">POST</span>
+          <span class="api-endpoint">/api/subdist/v1/stocks/bulk</span>
+        </div>
+        <div class="api-body-grid">
+          <div>
+            <div class="api-label">Request Body</div>
+            <pre class="api-pre">[{
+  "DIST_CODE": "3441221",
+  "PRODUCT_CODE": "LKPNA",
+  "STOCK_DATE": "2021-04-26",
+  "STOCK_UNIT": 10,
+  "STOCK_TYPE": "Baik"
+}]</pre>
+          </div>
+          <div>
+            <div class="api-label">Parameter</div>
+            <table class="api-param-table">
+              <tr><th>Field</th><th>Tipe</th><th>Keterangan</th></tr>
+              <tr><td>DIST_CODE</td><td>String</td><td>Kode distributor</td></tr>
+              <tr><td>PRODUCT_CODE</td><td>String</td><td>Kode produk</td></tr>
+              <tr><td>STOCK_DATE</td><td>Date</td><td>Tanggal stok</td></tr>
+              <tr><td>STOCK_UNIT</td><td>Integer</td><td>Jumlah stok</td></tr>
+              <tr><td>STOCK_TYPE</td><td>String</td><td>Baik / Rusak / BDP</td></tr>
+            </table>
+            <div class="api-label" style="margin-top:12px;">Stock Type</div>
+            <div class="api-tags-row">
+              <span class="api-tag green">Baik</span>
+              <span class="api-tag red">Rusak</span>
+              <span class="api-tag orange">BDP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order API -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-orange">🛒</div> 3. Order API (Taking Order)</div>
+      <p style="color:var(--text2);margin-bottom:20px;">API untuk pengiriman data order/taking order dari salesman ke server DMS.</p>
+      <div class="api-card">
+        <div class="api-method-bar">
+          <span class="api-method post">POST</span>
+          <span class="api-endpoint">/api/subdist/v1/orders/bulk</span>
+        </div>
+        <div class="api-body-grid">
+          <div>
+            <div class="api-label">Request Body</div>
+            <pre class="api-pre">[{
+  "DIST_CODE": "2631895",
+  "ORDER_DATE": "2021-05-23",
+  "ORDER_CODE": "1234",
+  "SALESMAN_CODE": "E.00012",
+  "SALESMAN_NAME": "Wawan",
+  "PRODUCT_CODE": "PBPDA",
+  "ORDER_UNIT": 70,
+  "OUTLET_CODE": "001BGR",
+  "OUTLET_NAME": "Warung ABC",
+  "OUTLET_ADDRESS": "Bogor"
+}]</pre>
+          </div>
+          <div>
+            <div class="api-label">Parameter</div>
+            <table class="api-param-table">
+              <tr><th>Field</th><th>Tipe</th><th>Keterangan</th></tr>
+              <tr><td>DIST_CODE</td><td>String</td><td>Kode sub distributor</td></tr>
+              <tr><td>ORDER_DATE</td><td>Date</td><td>Tanggal order</td></tr>
+              <tr><td>ORDER_CODE</td><td>String</td><td>Kode order unik</td></tr>
+              <tr><td>SALESMAN_CODE</td><td>String</td><td>Kode salesman</td></tr>
+              <tr><td>SALESMAN_NAME</td><td>String</td><td>Nama salesman</td></tr>
+              <tr><td>PRODUCT_CODE</td><td>String</td><td>Kode produk</td></tr>
+              <tr><td>ORDER_UNIT</td><td>Integer</td><td>Quantity order</td></tr>
+              <tr><td>OUTLET_CODE</td><td>String</td><td>Kode outlet</td></tr>
+              <tr><td>OUTLET_NAME</td><td>String</td><td>Nama outlet</td></tr>
+              <tr><td>OUTLET_ADDRESS</td><td>String</td><td>Alamat outlet</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Sales API -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-purple">💰</div> 4. Product Sales API</div>
+      <p style="color:var(--text2);margin-bottom:20px;">API untuk pengiriman data penjualan produk berdasarkan invoice.</p>
+      <div class="api-card">
+        <div class="api-method-bar">
+          <span class="api-method post">POST</span>
+          <span class="api-endpoint">/api/subdist/v1/productsales/bulk</span>
+        </div>
+        <div class="api-body-grid">
+          <div>
+            <div class="api-label">Request Body</div>
+            <pre class="api-pre">[{
+  "DIST_CODE": "2631895",
+  "INVOICE_DATE": "2021-05-24",
+  "INVOICE_CODE": "24.05.2021.006501",
+  "ORDER_CODE": "1234",
+  "SALESMAN_CODE": "E.00012",
+  "SALESMAN_NAME": "Wawan",
+  "PRODUCT_CODE": "PBPDA",
+  "SALES_UNIT": 70,
+  "SALES_VALUE": 1000000,
+  "OUTLET_CODE": "001BGR",
+  "OUTLET_NAME": "Warung ABC",
+  "OUTLET_ADDRESS": "Bogor"
+}]</pre>
+          </div>
+          <div>
+            <div class="api-label">Parameter</div>
+            <table class="api-param-table">
+              <tr><th>Field</th><th>Tipe</th><th>Keterangan</th></tr>
+              <tr><td>DIST_CODE</td><td>String</td><td>Kode distributor</td></tr>
+              <tr><td>INVOICE_DATE</td><td>Date</td><td>Tanggal invoice</td></tr>
+              <tr><td>INVOICE_CODE</td><td>String</td><td>Nomor invoice</td></tr>
+              <tr><td>ORDER_CODE</td><td>String</td><td>Kode order</td></tr>
+              <tr><td>SALESMAN_CODE</td><td>String</td><td>Kode salesman</td></tr>
+              <tr><td>SALESMAN_NAME</td><td>String</td><td>Nama salesman</td></tr>
+              <tr><td>PRODUCT_CODE</td><td>String</td><td>Kode produk</td></tr>
+              <tr><td>SALES_UNIT</td><td>Integer</td><td>Quantity penjualan</td></tr>
+              <tr><td>SALES_VALUE</td><td>Double</td><td>Nilai penjualan (Rp)</td></tr>
+              <tr><td>OUTLET_CODE</td><td>String</td><td>Kode outlet</td></tr>
+              <tr><td>OUTLET_NAME</td><td>String</td><td>Nama outlet</td></tr>
+              <tr><td>OUTLET_ADDRESS</td><td>String</td><td>Alamat outlet</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard Response & Error -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-green">📋</div> 5. Standard Response</div>
+      <div class="api-response-grid">
+        <div class="api-card" style="padding:24px;">
+          <div class="api-label">✅ Success Response</div>
+          <pre class="api-pre">{
+  "status": "OK",
+  "timestamp": "2021-06-18 09:07:49",
+  "message": "Stored 2 entities"
+}</pre>
+          <div class="api-status-list">
+            <div class="api-status ok"><span>200</span> Data berhasil diterima</div>
+            <div class="api-status warn"><span>400</span> Bad Request</div>
+            <div class="api-status warn"><span>404</span> Data/URL tidak ditemukan</div>
+            <div class="api-status err"><span>500</span> Internal Server Error</div>
+          </div>
+        </div>
+        <div class="api-card" style="padding:24px;">
+          <div class="api-label">❌ Error Response</div>
+          <pre class="api-pre">{
+  "status": "BAD_REQUEST",
+  "timestamp": "2021-06-18 08:36:13",
+  "message": "Invalid data",
+  "subErrors": [{
+    "object": "Order",
+    "field": "productCode",
+    "message": "must be valid code"
+  }]
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Endpoint Summary -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-blue">📊</div> 6. Ringkasan Endpoint</div>
+      <div style="overflow-x:auto;">
+        <table class="compare-table">
+          <thead>
+            <tr><th>API</th><th>Method</th><th>Endpoint</th><th>Fungsi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Authentication</td><td><span class="api-method-sm post">POST</span></td><td><code class="api-code-sm">/authenticate</code></td><td>Generate JWT token</td></tr>
+            <tr><td>Stock Bulk</td><td><span class="api-method-sm post">POST</span></td><td><code class="api-code-sm">/api/subdist/v1/stocks/bulk</code></td><td>Upload stok barang</td></tr>
+            <tr><td>Order Bulk</td><td><span class="api-method-sm post">POST</span></td><td><code class="api-code-sm">/api/subdist/v1/orders/bulk</code></td><td>Upload taking order</td></tr>
+            <tr><td>Product Sales</td><td><span class="api-method-sm post">POST</span></td><td><code class="api-code-sm">/api/subdist/v1/productsales/bulk</code></td><td>Upload data sales</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Integration Flow -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-purple">🔄</div> 7. Alur Integrasi API</div>
+      <div class="noorder-flow-section">
+        <h4 class="noorder-flow-title">Flow Integrasi System-to-System</h4>
+        <div class="noorder-flow">
+          <div class="noorder-flow-step" style="--hover-color:var(--cyan);">
+            <div class="noorder-flow-icon" style="background:rgba(6,182,212,.1);">🔐</div>
+            <div class="noorder-flow-label">Authenticate<br><small>JWT Login</small></div>
+          </div>
+          <div class="noorder-flow-arrow" style="color:var(--cyan);">→</div>
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon" style="background:rgba(59,130,246,.1);">🔑</div>
+            <div class="noorder-flow-label">Get Token<br><small>Bearer JWT</small></div>
+          </div>
+          <div class="noorder-flow-arrow" style="color:var(--blue);">→</div>
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon" style="background:rgba(34,197,94,.1);">📦</div>
+            <div class="noorder-flow-label">Send Data<br><small>Stok/Order/Sales</small></div>
+          </div>
+          <div class="noorder-flow-arrow" style="color:var(--green);">→</div>
+          <div class="noorder-flow-step">
+            <div class="noorder-flow-icon" style="background:rgba(168,85,247,.1);">✅</div>
+            <div class="noorder-flow-label">Response<br><small>Validation</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Architecture -->
+    <div class="section">
+      <div class="section-title"><div class="icon icon-cyan">⚙️</div> 8. Teknologi & Arsitektur</div>
+      <div class="api-tech-grid">
+        <div class="adv-card">
+          <h4>🛠 Teknologi</h4>
+          <ul>
+            <li>REST API</li>
+            <li>JSON Format</li>
+            <li>JWT Authentication</li>
+            <li>Bulk Data Processing</li>
+          </ul>
+        </div>
+        <div class="adv-card">
+          <h4>📐 Karakteristik</h4>
+          <ul>
+            <li>Stateless Architecture</li>
+            <li>Secure Authentication (JWT 5 jam)</li>
+            <li>Bulk Insert Support</li>
+            <li>System-to-System Integration</li>
+            <li>Real-time Synchronization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 <!-- Footer -->
@@ -243,6 +890,21 @@ function showTab(id) {
   event.target.classList.add('active');
   window.scrollTo({ top: 200, behavior: 'smooth' });
 }
+
+// Intersection Observer for scroll animations
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.order-flow-step, .delete-card, .noorder-card, .noorder-flow-step').forEach(el => {
+  el.classList.add('animate-on-scroll');
+  observer.observe(el);
+});
 </script>
 </body>
 </html>
