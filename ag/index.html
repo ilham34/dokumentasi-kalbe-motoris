@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -24,6 +24,7 @@
   <div class="tabs">
     <div class="tab active" onclick="showTab('web')">🌐 Alur Website</div>
     <div class="tab" onclick="showTab('android')">📱 Alur Android</div>
+    <div class="tab" onclick="showTab('canvasser')"> Canvasser (Motoris)</div>
     <div class="tab" onclick="showTab('order')">🛒 Taking Order</div>
     <div class="tab" onclick="showTab('menu')">📋 Menu &amp; Fitur</div>
     <div class="tab" onclick="showTab('keunggulan')">🏆 Keunggulan</div>
@@ -64,6 +65,90 @@
       </div>
     </div>
   </div>
+<div id="tab-canvasser" class="tab-content">
+  <div class="section">
+    <div class="cv-hero">
+      <div class="cv-hero-icon"></div>
+      <div>
+        <h2>Canvasser (Motoris)</h2>
+        <p>Dokumentasi alur kerja lapangan aplikasi SFA untuk canvasser/motoris: mulai dari login, check-in outlet, transaksi, dokumentasi aktivitas, setoran, hingga laporan aktivitas harian. Dokumentasi ini disusun sebagai penawaran awal solusi SFA untuk calon client.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><div class="icon icon-blue">🧭</div> Ringkasan Journey Harian Motoris</div>
+    <div class="cv-timeline">
+      <div class="cv-time"><b>1. Login</b><span>Motoris masuk memakai username & password, sesi tersimpan untuk auto-login.</span></div>
+      <div class="cv-time"><b>2. Home</b><span>Melihat jumlah kunjungan hari ini, status check-in, dan menu sesuai hak akses admin.</span></div>
+      <div class="cv-time"><b>3. Check In Outlet</b><span>Pilih toko terdekat berbasis GPS atau buat NOO jika diaktifkan admin, lalu upload foto check-in.</span></div>
+      <div class="cv-time"><b>4. Aktivitas / Transaksi</b><span>Input penjualan, pembelian, distribusi, foto activity, stok, PO, pengembalian, atau setor uang sesuai tipe outlet.</span></div>
+      <div class="cv-time"><b>5. Check Out</b><span>Upload foto check-out, koordinat tercatat, durasi kunjungan tersimpan.</span></div>
+      <div class="cv-time"><b>6. Monitoring</b><span>Riwayat masuk ke Log Produk, Log Uang, Log Activity, dan laporan website admin.</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><div class="icon icon-orange">📱</div> Menu Utama Aplikasi Android</div>
+    <div class="cv-subtabs">
+      <button class="cv-sub-tab active" onclick="showCanvasserSub('kunjungan')"> Kunjungan</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('transaksi')">🛒 Transaksi</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('aktivitas')">📸 Aktivitas</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('monitoring')">📊 Monitoring</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('admin')">⚙ Admin & Akses</button>
+    </div>
+
+    <div id="cv-kunjungan" class="cv-sub-content active">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4> Login & Session</h4><p>Motoris login melalui aplikasi Android. Sistem menyimpan token dan id user untuk akses API. Jika sesi masih valid, pengguna dapat masuk otomatis. Jika password awal/perubahan diperlukan, diarahkan ke ganti password.</p><ol><li>Input username dan password.</li><li>Server memvalidasi kredensial, level, token, dan menu aktif.</li><li>Aplikasi membuka Home Panel.</li></ol></div>
+        <div class="cv-feature-card"><h4> Home Panel</h4><p>Halaman utama menampilkan jumlah kunjungan hari ini, kartu Check In, dan menu transaksi yang muncul dinamis sesuai setting admin.</p><ol><li>Ambil info log harian dari server.</li><li>Tampilkan status sudah/belum check-in.</li><li>Tampilkan menu sesuai flag: penjualan, distribusi, foto, PO, stok, dan lainnya.</li></ol></div>
+        <div class="cv-feature-card"><h4> Check In Toko</h4><p>Motoris wajib check-in sebelum transaksi. Aplikasi mengambil GPS, menampilkan Google Maps, melakukan reverse geocoding alamat, dan mewajibkan foto check-in.</p><ol><li>Aktifkan GPS dan izinkan lokasi.</li><li>Pilih toko dari daftar terdekat berdasarkan koordinat.</li><li>Upload foto check-in.</li><li>Sistem simpan lat, lng, alamat, foto, waktu, user, dan toko.</li></ol></div>
+        <div class="cv-feature-card"><h4> NOO / Toko Baru</h4><p>Jika admin mengaktifkan NOO, motoris dapat mendaftarkan outlet baru langsung dari lapangan.</p><ol><li>Pilih tab NOO pada Check In.</li><li>Isi nama toko, group toko, type toko, DC toko, kelurahan, alamat, dan type lokasi.</li><li>Upload foto outlet/check-in.</li><li>Simpan & langsung check-in ke outlet baru.</li></ol></div>
+        <div class="cv-feature-card"><h4>🚪 Check Out</h4><p>Setelah aktivitas selesai, motoris melakukan check-out sebagai bukti kunjungan selesai.</p><ol><li>Buka kartu Check In yang berubah menjadi Check Out.</li><li>Ambil foto check-out.</li><li>Sistem simpan koordinat, alamat, foto, jam selesai, dan durasi kunjungan.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-transaksi" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4>🛒 Penjualan</h4><p>Digunakan di outlet bertipe TOKO untuk mencatat penjualan produk.</p><ol><li>Masuk menu Penjualan setelah check-in.</li><li>Klik tambah bukti penjualan.</li><li>Sistem membuat nomor bukti/temp id.</li><li>Pilih detail produk, input qty, harga, dan total.</li><li>Simpan detail lalu posting/finalisasi.</li><li>Status transaksi dan nilai penjualan muncul di web admin.</li></ol></div>
+        <div class="cv-feature-card"><h4>📥 Pembelian</h4><p>Digunakan pada outlet bertipe DISTRIBUTOR untuk mencatat pembelian barang dari distributor.</p><ol><li>Pilih menu Pembelian.</li><li>Tambah bukti pembelian berdasarkan tanggal check-in.</li><li>Input item produk, kuantitas, dan nilai.</li><li>Simpan detail dan posting.</li><li>Data masuk laporan pembelian dan log produk.</li></ol></div>
+        <div class="cv-feature-card"><h4>📋 Input PO</h4><p>Mencatat Purchase Order dari outlet/distributor sebagai rencana pemesanan.</p><ol><li>Buka menu Input PO.</li><li>Tambah transaksi PO.</li><li>Pilih produk dan isi jumlah order.</li><li>Simpan detail item.</li><li>Kirim/posting agar dapat dipantau admin.</li></ol></div>
+        <div class="cv-feature-card"><h4>🔄 Pengembalian</h4><p>Mencatat retur/pengembalian produk dari outlet/distributor.</p><ol><li>Buka menu Pengembalian.</li><li>Tambah bukti pengembalian.</li><li>Pilih barang yang dikembalikan.</li><li>Isi quantity dan keterangan kondisi.</li><li>Simpan dan posting untuk masuk laporan retur.</li></ol></div>
+        <div class="cv-feature-card"><h4>💰 Setor Uang</h4><p>Mencatat setoran uang hasil penjualan. Data setoran mendukung bukti foto dan status transaksi.</p><ol><li>Buka menu Setor Uang.</li><li>Tambah bukti setor.</li><li>Isi detail nominal/setoran manual bila tersedia.</li><li>Upload foto bukti setor.</li><li>Simpan dan posting agar muncul di Log Uang dan laporan setor.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-aktivitas" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4>📊 Distribusi Produk</h4><p>Checklist ketersediaan produk per SKU di toko, termasuk pembanding dengan produk kompetitor jika disiapkan master datanya.</p><ol><li>Buka menu Distribusi Produk.</li><li>Tambah bukti distribusi untuk toko yang sedang dikunjungi.</li><li>Pilih produk dan isi status ketersediaan.</li><li>Simpan detail dan posting.</li><li>Admin melihat rekap penetrasi produk per toko/area.</li></ol></div>
+        <div class="cv-feature-card"><h4>📂 Distribusi Kategori</h4><p>Checklist distribusi berdasarkan kategori/kelompok produk untuk membaca coverage kategori di outlet.</p><ol><li>Buka Distribusi Kategori.</li><li>Tambah bukti kunjungan.</li><li>Pilih kategori dan isi status distribusi.</li><li>Simpan dan posting.</li><li>Data masuk laporan rekap checklist kategori.</li></ol></div>
+        <div class="cv-feature-card"><h4>📸 Foto Activity Motoris</h4><p>Dokumentasi foto aktivitas promosi/display/branding oleh motoris.</p><ol><li>Buka Foto Activity Motoris.</li><li>Tambah bukti foto activity.</li><li>Pilih jenis foto/remark bila tersedia.</li><li>Ambil atau upload foto dari kamera.</li><li>Simpan agar admin dapat memverifikasi aktivitas lapangan.</li></ol></div>
+        <div class="cv-feature-card"><h4>📷 Foto Activity SMD</h4><p>Dokumentasi aktivitas SMD dengan detail foto yang terpisah dari foto motoris.</p><ol><li>Buka Foto Activity SMD.</li><li>Tambah master aktivitas.</li><li>Isi detail/sub-detail foto SMD.</li><li>Upload bukti foto.</li><li>Data tampil di laporan foto activity SMD.</li></ol></div>
+        <div class="cv-feature-card"><h4>📦 Input Stok</h4><p>Input stok outlet untuk memantau ketersediaan barang di lapangan.</p><ol><li>Buka menu Input Stok.</li><li>Pilih/ tambah transaksi stok.</li><li>Pilih produk dan masukkan jumlah stok.</li><li>Simpan data stok.</li><li>Admin dapat melihat laporan stok dan status OOS.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-monitoring" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4>📦 Log Produk</h4><p>Riwayat transaksi berbasis produk seperti penjualan, pembelian, stok, distribusi, dan pengembalian.</p><ol><li>Motoris membuka tab Log Produk.</li><li>Pilih periode/data yang ingin dilihat.</li><li>Sistem menampilkan transaksi produk yang pernah dibuat.</li></ol></div>
+        <div class="cv-feature-card"><h4>💵 Log Uang</h4><p>Riwayat transaksi keuangan seperti setor uang dan kas terkait aktivitas lapangan.</p><ol><li>Buka tab Log Uang.</li><li>Lihat daftar transaksi nominal dan statusnya.</li><li>Gunakan sebagai kontrol harian sebelum closing aktivitas.</li></ol></div>
+        <div class="cv-feature-card"><h4> Log Activity</h4><p>Riwayat aktivitas kunjungan harian motoris: check-in, check-out, toko, dan aktivitas yang dilakukan.</p><ol><li>Buka tab Log Activity.</li><li>Lihat daftar outlet yang dikunjungi.</li><li>Cek durasi, status, dan aktivitas yang sudah tersimpan.</li></ol></div>
+        <div class="cv-feature-card"><h4>👤 Profile</h4><p>Menampilkan data pengguna seperti nama, jabatan, team, area/regional, serta menyediakan logout dan ganti password.</p><ol><li>Buka tab Profile.</li><li>Cek identitas motoris.</li><li>Gunakan ganti password atau logout jika diperlukan.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-admin" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4>⚙ Setting Menu dari Website Admin</h4><p>Menu Android tidak selalu sama untuk semua motoris. Website admin mengatur flag akses seperti menu_penjualan, menu_distribusiproduk, menu_fotoactivitymotoris, menu_inputpo, menu_setoruang, menu_inputstok, dan menu_inputijin.</p><ol><li>Admin membuat/ubah pegawai dan user.</li><li>Admin menentukan jabatan, team, area, dan role.</li><li>Admin mengaktifkan menu sesuai kebutuhan operasional.</li><li>Aplikasi Android membaca konfigurasi saat Home dimuat.</li></ol></div>
+        <div class="cv-feature-card"><h4>🧩 Master Data Pendukung</h4><p>Transaksi motoris bergantung pada master di website: barang, toko, pegawai, wilayah, group toko, type toko, DC toko, kategori, brand, satuan, reason, remark, dan jenis foto activity.</p><ol><li>Admin menyiapkan master data.</li><li>Motoris memilih data melalui dropdown/search di aplikasi.</li><li>Data transaksi tersimpan dengan referensi master yang konsisten.</li></ol></div>
+        <div class="cv-feature-card"><h4>📈 Laporan Admin</h4><p>Setiap aktivitas motoris tersinkron ke website admin untuk monitoring dan rekap.</p><ol><li>Laporan penjualan dan pembelian.</li><li>Laporan CICO/kunjungan.</li><li>Laporan foto activity motoris dan SMD.</li><li>Laporan checklist distribusi produk/kategori.</li><li>Laporan stok, OOS, PO, retur, setoran uang, dan ijin.</li></ol></div>
+        <div class="cv-feature-card"><h4> Input Ijin</h4><p>Motoris dapat mengajukan ijin/cuti/sakit jika menu diaktifkan oleh admin.</p><ol><li>Buka menu Input Ijin.</li><li>Isi tanggal, jenis ijin, alasan, dan lampiran bila diperlukan.</li><li>Simpan pengajuan.</li><li>Admin memantau melalui laporan ijin/approval.</li></ol></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
   <!-- ===== TAB: TAKING ORDER ===== -->
   <div id="tab-order" class="tab-content">
@@ -81,7 +166,7 @@
 
     <!-- Prerequisite: Check-in -->
     <div class="section">
-      <div class="section-title"><div class="icon icon-blue">📍</div> Prasyarat: Check In ke Toko</div>
+      <div class="section-title"><div class="icon icon-blue"></div> Prasyarat: Check In ke Toko</div>
       <div class="prereq-card">
         <div class="prereq-badge">WAJIB</div>
         <div class="prereq-content">
@@ -149,7 +234,7 @@
           <div class="order-step-body">
             <div class="order-action-list">
               <div class="order-action">
-                <span class="order-action-icon">🏷️</span>
+                <span class="order-action-icon"></span>
                 <span>Pilih <strong>kategori brand</strong> dari daftar brand yang tersedia</span>
               </div>
               <div class="order-action">
@@ -255,7 +340,7 @@
 
     <!-- Feature 7: Hapus Produk -->
     <div class="section">
-      <div class="section-title"><div class="icon icon-red">🗑️</div> 7. Hapus Produk dari Order</div>
+      <div class="section-title"><div class="icon icon-red">🗑</div> 7. Hapus Produk dari Order</div>
       <p style="color:var(--text2);margin-bottom:24px;">Fitur untuk menghapus item produk sebelum order dikirim, memungkinkan sales mengoreksi kesalahan atau menyesuaikan pesanan.</p>
       
       <div class="delete-feature-grid">
@@ -304,17 +389,17 @@
         <div class="delete-demo-item">
           <span class="delete-demo-product">📦 Promag Tablet</span>
           <span class="delete-demo-qty">x12</span>
-          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑️ Kosongkan</button>
+          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑 Kosongkan</button>
         </div>
         <div class="delete-demo-item">
           <span class="delete-demo-product">📦 Procold Flu & Batuk</span>
           <span class="delete-demo-qty">x24</span>
-          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑️ Kosongkan</button>
+          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑 Kosongkan</button>
         </div>
         <div class="delete-demo-item">
           <span class="delete-demo-product">📦 Komix Herbal</span>
           <span class="delete-demo-qty">x6</span>
-          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑️ Kosongkan</button>
+          <button class="delete-demo-btn" onclick="this.closest('.delete-demo-item').classList.add('removed')">🗑 Kosongkan</button>
         </div>
         <p class="delete-demo-hint">💡 Klik tombol "Kosongkan" untuk melihat efek hapus produk</p>
       </div>
@@ -322,7 +407,7 @@
 
     <!-- Feature 8: Catatan / No Order Notes -->
     <div class="section">
-      <div class="section-title"><div class="icon icon-purple">📝</div> 8. Catatan / No Order Notes</div>
+      <div class="section-title"><div class="icon icon-purple"></div> 8. Catatan / No Order Notes</div>
       <p style="color:var(--text2);margin-bottom:24px;">Fitur pencatatan alasan outlet tidak melakukan pembelian. Data ini digunakan untuk monitoring dan analisa strategi penjualan.</p>
       
       <div class="noorder-grid">
@@ -393,7 +478,7 @@
         <h4 class="noorder-flow-title">📋 Alur Pencatatan No Order</h4>
         <div class="noorder-flow">
           <div class="noorder-flow-step">
-            <div class="noorder-flow-icon">📍</div>
+            <div class="noorder-flow-icon"></div>
             <div class="noorder-flow-label">Check In<br><small>ke toko</small></div>
           </div>
           <div class="noorder-flow-arrow">→</div>
@@ -403,7 +488,7 @@
           </div>
           <div class="noorder-flow-arrow">→</div>
           <div class="noorder-flow-step">
-            <div class="noorder-flow-icon">📝</div>
+            <div class="noorder-flow-icon"></div>
             <div class="noorder-flow-label">Pilih Alasan<br><small>no order</small></div>
           </div>
           <div class="noorder-flow-arrow">→</div>
@@ -426,26 +511,26 @@
   <div id="tab-menu" class="tab-content">
     <!-- Website Menus -->
     <div class="section">
-      <div class="section-title"><div class="icon icon-orange">🌐</div> Menu Website Admin</div>
+      <div class="section-title"><div class="icon icon-orange"></div> Menu Website Admin</div>
       <div class="menu-grid">
         <div class="menu-card"><h4><span class="emoji">📊</span> Dashboard Motoris</h4><p>Dashboard interaktif dengan grafik penjualan (Qty & Nominal), ranking produk, peta aktivitas, filter multi-level (Nasional → Regional → Area → Team Leader → Sales).</p><span class="tag tag-laporan">Dashboard</span></div>
         <div class="menu-card"><h4><span class="emoji">📦</span> Master Barang</h4><p>Kelola data produk: kode, nama, kategori, type, merk, satuan, kelompok, harga. Termasuk detail barang dan rasio satuan.</p><span class="tag tag-master">Master</span></div>
-        <div class="menu-card"><h4><span class="emoji">🏪</span> Master Toko</h4><p>Data toko/outlet: nama, alamat, group toko, type toko, DC toko, kelurahan, koordinat GPS, type lokasi.</p><span class="tag tag-master">Master</span></div>
+        <div class="menu-card"><h4><span class="emoji"></span> Master Toko</h4><p>Data toko/outlet: nama, alamat, group toko, type toko, DC toko, kelurahan, koordinat GPS, type lokasi.</p><span class="tag tag-master">Master</span></div>
         <div class="menu-card"><h4><span class="emoji">👥</span> Master Pegawai</h4><p>Data karyawan, jabatan, team level (Regional, Sub-Regional, Team Leader, Cabang), area kerja, dan wilayah.</p><span class="tag tag-master">Master</span></div>
-        <div class="menu-card"><h4><span class="emoji">🗺️</span> Wilayah</h4><p>Kelola hierarki wilayah: Provinsi, Kabupaten, Kecamatan, Kelurahan. Regional, Area, dan Spot Area.</p><span class="tag tag-master">Master</span></div>
+        <div class="menu-card"><h4><span class="emoji">🗺</span> Wilayah</h4><p>Kelola hierarki wilayah: Provinsi, Kabupaten, Kecamatan, Kelurahan. Regional, Area, dan Spot Area.</p><span class="tag tag-master">Master</span></div>
         <div class="menu-card"><h4><span class="emoji">🛒</span> Penjualan</h4><p>Monitoring transaksi penjualan dari sales lapangan. Detail produk, qty, harga, total per transaksi.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">📥</span> Pembelian</h4><p>Catat pembelian produk dari distributor. Master & detail pembelian.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">🔄</span> Pengembalian</h4><p>Proses retur/pengembalian produk dari toko ke distributor.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">📋</span> Input PO</h4><p>Purchase Order dari toko. Master & detail PO dengan approval flow.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">💰</span> Setor Uang/Kas</h4><p>Pencatatan setor uang dari sales, setor kas, setor bank, penyerahan uang.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">📊</span> Laporan Penjualan</h4><p>Rekap penjualan per periode, per sales, per produk, per toko. Download Excel/CSV.</p><span class="tag tag-laporan">Laporan</span></div>
-        <div class="menu-card"><h4><span class="emoji">📍</span> Laporan Kunjungan (CICO)</h4><p>Check In/Check Out: waktu, durasi, foto, lokasi GPS, alamat lengkap per sales per hari.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji"></span> Laporan Kunjungan (CICO)</h4><p>Check In/Check Out: waktu, durasi, foto, lokasi GPS, alamat lengkap per sales per hari.</p><span class="tag tag-laporan">Laporan</span></div>
         <div class="menu-card"><h4><span class="emoji">📸</span> Laporan Foto Activity</h4><p>Foto aktivitas motoris & SMD di toko. Foto promosi, display, branding.</p><span class="tag tag-laporan">Laporan</span></div>
         <div class="menu-card"><h4><span class="emoji">📈</span> Laporan Distribusi</h4><p>Checklist distribusi produk per toko. Distribusi by produk & by kategori.</p><span class="tag tag-laporan">Laporan</span></div>
         <div class="menu-card"><h4><span class="emoji">📦</span> Laporan Stok</h4><p>Monitoring stok per outlet, stok harian, stock report, status stok.</p><span class="tag tag-laporan">Laporan</span></div>
-        <div class="menu-card"><h4><span class="emoji">🗺️</span> Map Activity</h4><p>Peta real-time lokasi sales dan aktivitas kunjungan per tanggal.</p><span class="tag tag-laporan">Laporan</span></div>
+        <div class="menu-card"><h4><span class="emoji">🗺</span> Map Activity</h4><p>Peta real-time lokasi sales dan aktivitas kunjungan per tanggal.</p><span class="tag tag-laporan">Laporan</span></div>
         <div class="menu-card"><h4><span class="emoji">👤</span> User & Akses</h4><p>Manajemen user, level akses, otoritas per menu (Add/Edit/Delete/Print).</p><span class="tag tag-setting">Setting</span></div>
-        <div class="menu-card"><h4><span class="emoji">⚙️</span> Setting</h4><p>Identitas perusahaan, reward toko, jadwal reward, pengumuman, firebase notifikasi.</p><span class="tag tag-setting">Setting</span></div>
+        <div class="menu-card"><h4><span class="emoji">⚙</span> Setting</h4><p>Identitas perusahaan, reward toko, jadwal reward, pengumuman, firebase notifikasi.</p><span class="tag tag-setting">Setting</span></div>
       </div>
     </div>
 
@@ -453,7 +538,7 @@
     <div class="section">
       <div class="section-title"><div class="icon icon-blue">📱</div> Menu Aplikasi Android</div>
       <div class="menu-grid">
-        <div class="menu-card"><h4><span class="emoji">📍</span> Check In / Check Out</h4><p>GPS-based check in ke toko terdaftar atau buat toko baru (NOO). Foto wajib, koordinat & alamat otomatis, Google Maps, tracking durasi kunjungan.</p><span class="tag tag-field">Lapangan</span></div>
+        <div class="menu-card"><h4><span class="emoji"></span> Check In / Check Out</h4><p>GPS-based check in ke toko terdaftar atau buat toko baru (NOO). Foto wajib, koordinat & alamat otomatis, Google Maps, tracking durasi kunjungan.</p><span class="tag tag-field">Lapangan</span></div>
         <div class="menu-card"><h4><span class="emoji">🛒</span> Penjualan</h4><p>Input penjualan produk di toko setelah check in. Pilih produk, qty, harga. Multi-item per transaksi. Auto-sync ke server.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">📥</span> Pembelian</h4><p>Catat pembelian produk dari distributor. Khusus tipe toko Distributor.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">📊</span> Distribusi Produk</h4><p>Checklist ketersediaan produk Kalbe vs kompetitor di rak toko. Data distribusi per produk.</p><span class="tag tag-field">Lapangan</span></div>
@@ -464,10 +549,10 @@
         <div class="menu-card"><h4><span class="emoji">📋</span> Input PO</h4><p>Input Purchase Order dari toko. Master & detail item PO.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">💰</span> Setor Uang</h4><p>Pencatatan setor uang hasil penjualan. Dengan opsi setor manual.</p><span class="tag tag-transaksi">Transaksi</span></div>
         <div class="menu-card"><h4><span class="emoji">📦</span> Input Stok</h4><p>Input stok produk di toko. Monitoring ketersediaan barang.</p><span class="tag tag-field">Lapangan</span></div>
-        <div class="menu-card"><h4><span class="emoji">📝</span> Input Ijin</h4><p>Pengajuan ijin/cuti dari sales. Dengan flow approval dan posting.</p><span class="tag tag-setting">Administrasi</span></div>
+        <div class="menu-card"><h4><span class="emoji"></span> Input Ijin</h4><p>Pengajuan ijin/cuti dari sales. Dengan flow approval dan posting.</p><span class="tag tag-setting">Administrasi</span></div>
         <div class="menu-card"><h4><span class="emoji">📦</span> Log Produk</h4><p>Riwayat transaksi produk: penjualan, pembelian, stok masuk/keluar.</p><span class="tag tag-laporan">Log</span></div>
         <div class="menu-card"><h4><span class="emoji">💵</span> Log Uang</h4><p>Riwayat transaksi keuangan: setor uang, kas masuk/keluar.</p><span class="tag tag-laporan">Log</span></div>
-        <div class="menu-card"><h4><span class="emoji">🏃</span> Log Activity</h4><p>Riwayat aktivitas lapangan: kunjungan, check in/out, transaksi.</p><span class="tag tag-laporan">Log</span></div>
+        <div class="menu-card"><h4><span class="emoji"></span> Log Activity</h4><p>Riwayat aktivitas lapangan: kunjungan, check in/out, transaksi.</p><span class="tag tag-laporan">Log</span></div>
         <div class="menu-card"><h4><span class="emoji">👤</span> Profile & Ganti Password</h4><p>Lihat data profil sales, jabatan, team, area, regional. Ganti password.</p><span class="tag tag-setting">Akun</span></div>
       </div>
     </div>
@@ -476,10 +561,10 @@
   <!-- ===== TAB: KEUNGGULAN ===== -->
   <div id="tab-keunggulan" class="tab-content">
     <div class="section">
-      <div class="section-title"><div class="icon icon-green">🏆</div> Keunggulan vs Kompetitor</div>
+      <div class="section-title"><div class="icon icon-green"></div> Keunggulan vs Kompetitor</div>
       <div class="adv-grid">
         <div class="adv-card">
-          <h4>📍 GPS-Based Check In/Out</h4>
+          <h4> GPS-Based Check In/Out</h4>
           <ul>
             <li>Validasi lokasi real-time dengan Google Maps</li>
             <li>Deteksi lokasi palsu (mock location detection)</li>
@@ -489,7 +574,7 @@
           </ul>
         </div>
         <div class="adv-card">
-          <h4>🔐 Multi-Level Akses Hierarkis</h4>
+          <h4> Multi-Level Akses Hierarkis</h4>
           <ul>
             <li>Hierarki: SA → Regional → Sub-Regional → Team Leader → Cabang → Sales</li>
             <li>Dashboard filter otomatis sesuai level user</li>
@@ -517,7 +602,7 @@
           </ul>
         </div>
         <div class="adv-card">
-          <h4>🏪 Manajemen Toko Lengkap (NOO Support)</h4>
+          <h4> Manajemen Toko Lengkap (NOO Support)</h4>
           <ul>
             <li>NOO (New Open Outlet) — sales bisa daftarkan toko baru langsung dari lapangan</li>
             <li>Toko terdekat otomatis berdasarkan radius GPS</li>
@@ -602,13 +687,13 @@
 
     <!-- Authentication -->
     <div class="section">
-      <div class="section-title"><div class="icon icon-cyan">🔐</div> 1. Authentication API</div>
+      <div class="section-title"><div class="icon icon-cyan"></div> 1. Authentication API</div>
       <p style="color:var(--text2);margin-bottom:20px;">Sistem menggunakan JWT Token Authentication. Token wajib dikirim pada setiap request API.</p>
       <div class="api-card">
         <div class="api-method-bar">
           <span class="api-method post">POST</span>
           <span class="api-endpoint">/authenticate</span>
-          <span class="api-badge-expire">⏱ Token berlaku 5 jam</span>
+          <span class="api-badge-expire"> Token berlaku 5 jam</span>
         </div>
         <div class="api-body-grid">
           <div>
@@ -784,7 +869,7 @@
           </div>
         </div>
         <div class="api-card" style="padding:24px;">
-          <div class="api-label">❌ Error Response</div>
+          <div class="api-label"> Error Response</div>
           <pre class="api-pre">{
   "status": "BAD_REQUEST",
   "timestamp": "2021-06-18 08:36:13",
@@ -824,7 +909,7 @@
         <h4 class="noorder-flow-title">Flow Integrasi System-to-System</h4>
         <div class="noorder-flow">
           <div class="noorder-flow-step" style="--hover-color:var(--cyan);">
-            <div class="noorder-flow-icon" style="background:rgba(6,182,212,.1);">🔐</div>
+            <div class="noorder-flow-icon" style="background:rgba(6,182,212,.1);"></div>
             <div class="noorder-flow-label">Authenticate<br><small>JWT Login</small></div>
           </div>
           <div class="noorder-flow-arrow" style="color:var(--cyan);">→</div>
@@ -848,7 +933,7 @@
 
     <!-- Tech Architecture -->
     <div class="section">
-      <div class="section-title"><div class="icon icon-cyan">⚙️</div> 8. Teknologi & Arsitektur</div>
+      <div class="section-title"><div class="icon icon-cyan">⚙</div> 8. Teknologi & Arsitektur</div>
       <div class="api-tech-grid">
         <div class="adv-card">
           <h4>🛠 Teknologi</h4>
@@ -860,7 +945,7 @@
           </ul>
         </div>
         <div class="adv-card">
-          <h4>📐 Karakteristik</h4>
+          <h4> Karakteristik</h4>
           <ul>
             <li>Stateless Architecture</li>
             <li>Secure Authentication (JWT 5 jam)</li>
@@ -891,6 +976,14 @@ function showTab(id) {
   window.scrollTo({ top: 200, behavior: 'smooth' });
 }
 
+// Canvasser sub-tab
+function showCanvasserSub(subId) {
+  document.querySelectorAll('.cv-sub-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.cv-sub-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('cv-' + subId).classList.add('active');
+  event.target.classList.add('active');
+}
+
 // Intersection Observer for scroll animations
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver((entries) => {
@@ -901,10 +994,11 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-document.querySelectorAll('.order-flow-step, .delete-card, .noorder-card, .noorder-flow-step').forEach(el => {
+document.querySelectorAll('.order-flow-step, .delete-card, .noorder-card, .noorder-flow-step, .cv-feature-card').forEach(el => {
   el.classList.add('animate-on-scroll');
   observer.observe(el);
 });
 </script>
 </body>
 </html>
+

@@ -1,0 +1,82 @@
+<div id="tab-canvasser" class="tab-content">
+  <div class="section">
+    <div class="cv-hero">
+      <div class="cv-hero-icon"></div>
+      <div>
+        <h2>Canvasser (Motoris)</h2>
+        <p>Dokumentasi alur kerja lapangan aplikasi SFA untuk canvasser/motoris: mulai dari login, check-in outlet, transaksi, dokumentasi aktivitas, setoran, hingga laporan aktivitas harian. Dokumentasi ini disusun sebagai penawaran awal solusi SFA untuk calon client.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><div class="icon icon-blue"></div> Ringkasan Journey Harian Motoris</div>
+    <div class="cv-timeline">
+      <div class="cv-time"><b>1. Login</b><span>Motoris masuk memakai username & password, sesi tersimpan untuk auto-login.</span></div>
+      <div class="cv-time"><b>2. Home</b><span>Melihat jumlah kunjungan hari ini, status check-in, dan menu sesuai hak akses admin.</span></div>
+      <div class="cv-time"><b>3. Check In Outlet</b><span>Pilih toko terdekat berbasis GPS atau buat NOO jika diaktifkan admin, lalu upload foto check-in.</span></div>
+      <div class="cv-time"><b>4. Aktivitas / Transaksi</b><span>Input penjualan, pembelian, distribusi, foto activity, stok, PO, pengembalian, atau setor uang sesuai tipe outlet.</span></div>
+      <div class="cv-time"><b>5. Check Out</b><span>Upload foto check-out, koordinat tercatat, durasi kunjungan tersimpan.</span></div>
+      <div class="cv-time"><b>6. Monitoring</b><span>Riwayat masuk ke Log Produk, Log Uang, Log Activity, dan laporan website admin.</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><div class="icon icon-orange"></div> Menu Utama Aplikasi Android</div>
+    <div class="cv-subtabs">
+      <button class="cv-sub-tab active" onclick="showCanvasserSub('kunjungan')"> Kunjungan</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('transaksi')"> Transaksi</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('aktivitas')"> Aktivitas</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('monitoring')"> Monitoring</button>
+      <button class="cv-sub-tab" onclick="showCanvasserSub('admin')"> Admin & Akses</button>
+    </div>
+
+    <div id="cv-kunjungan" class="cv-sub-content active">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4> Login & Session</h4><p>Motoris login melalui aplikasi Android. Sistem menyimpan token dan id user untuk akses API. Jika sesi masih valid, pengguna dapat masuk otomatis. Jika password awal/perubahan diperlukan, diarahkan ke ganti password.</p><ol><li>Input username dan password.</li><li>Server memvalidasi kredensial, level, token, dan menu aktif.</li><li>Aplikasi membuka Home Panel.</li></ol></div>
+        <div class="cv-feature-card"><h4> Home Panel</h4><p>Halaman utama menampilkan jumlah kunjungan hari ini, kartu Check In, dan menu transaksi yang muncul dinamis sesuai setting admin.</p><ol><li>Ambil info log harian dari server.</li><li>Tampilkan status sudah/belum check-in.</li><li>Tampilkan menu sesuai flag: penjualan, distribusi, foto, PO, stok, dan lainnya.</li></ol></div>
+        <div class="cv-feature-card"><h4> Check In Toko</h4><p>Motoris wajib check-in sebelum transaksi. Aplikasi mengambil GPS, menampilkan Google Maps, melakukan reverse geocoding alamat, dan mewajibkan foto check-in.</p><ol><li>Aktifkan GPS dan izinkan lokasi.</li><li>Pilih toko dari daftar terdekat berdasarkan koordinat.</li><li>Upload foto check-in.</li><li>Sistem simpan lat, lng, alamat, foto, waktu, user, dan toko.</li></ol></div>
+        <div class="cv-feature-card"><h4> NOO / Toko Baru</h4><p>Jika admin mengaktifkan NOO, motoris dapat mendaftarkan outlet baru langsung dari lapangan.</p><ol><li>Pilih tab NOO pada Check In.</li><li>Isi nama toko, group toko, type toko, DC toko, kelurahan, alamat, dan type lokasi.</li><li>Upload foto outlet/check-in.</li><li>Simpan & langsung check-in ke outlet baru.</li></ol></div>
+        <div class="cv-feature-card"><h4> Check Out</h4><p>Setelah aktivitas selesai, motoris melakukan check-out sebagai bukti kunjungan selesai.</p><ol><li>Buka kartu Check In yang berubah menjadi Check Out.</li><li>Ambil foto check-out.</li><li>Sistem simpan koordinat, alamat, foto, jam selesai, dan durasi kunjungan.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-transaksi" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4> Penjualan</h4><p>Digunakan di outlet bertipe TOKO untuk mencatat penjualan produk.</p><ol><li>Masuk menu Penjualan setelah check-in.</li><li>Klik tambah bukti penjualan.</li><li>Sistem membuat nomor bukti/temp id.</li><li>Pilih detail produk, input qty, harga, dan total.</li><li>Simpan detail lalu posting/finalisasi.</li><li>Status transaksi dan nilai penjualan muncul di web admin.</li></ol></div>
+        <div class="cv-feature-card"><h4> Pembelian</h4><p>Digunakan pada outlet bertipe DISTRIBUTOR untuk mencatat pembelian barang dari distributor.</p><ol><li>Pilih menu Pembelian.</li><li>Tambah bukti pembelian berdasarkan tanggal check-in.</li><li>Input item produk, kuantitas, dan nilai.</li><li>Simpan detail dan posting.</li><li>Data masuk laporan pembelian dan log produk.</li></ol></div>
+        <div class="cv-feature-card"><h4> Input PO</h4><p>Mencatat Purchase Order dari outlet/distributor sebagai rencana pemesanan.</p><ol><li>Buka menu Input PO.</li><li>Tambah transaksi PO.</li><li>Pilih produk dan isi jumlah order.</li><li>Simpan detail item.</li><li>Kirim/posting agar dapat dipantau admin.</li></ol></div>
+        <div class="cv-feature-card"><h4> Pengembalian</h4><p>Mencatat retur/pengembalian produk dari outlet/distributor.</p><ol><li>Buka menu Pengembalian.</li><li>Tambah bukti pengembalian.</li><li>Pilih barang yang dikembalikan.</li><li>Isi quantity dan keterangan kondisi.</li><li>Simpan dan posting untuk masuk laporan retur.</li></ol></div>
+        <div class="cv-feature-card"><h4> Setor Uang</h4><p>Mencatat setoran uang hasil penjualan. Data setoran mendukung bukti foto dan status transaksi.</p><ol><li>Buka menu Setor Uang.</li><li>Tambah bukti setor.</li><li>Isi detail nominal/setoran manual bila tersedia.</li><li>Upload foto bukti setor.</li><li>Simpan dan posting agar muncul di Log Uang dan laporan setor.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-aktivitas" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4> Distribusi Produk</h4><p>Checklist ketersediaan produk per SKU di toko, termasuk pembanding dengan produk kompetitor jika disiapkan master datanya.</p><ol><li>Buka menu Distribusi Produk.</li><li>Tambah bukti distribusi untuk toko yang sedang dikunjungi.</li><li>Pilih produk dan isi status ketersediaan.</li><li>Simpan detail dan posting.</li><li>Admin melihat rekap penetrasi produk per toko/area.</li></ol></div>
+        <div class="cv-feature-card"><h4> Distribusi Kategori</h4><p>Checklist distribusi berdasarkan kategori/kelompok produk untuk membaca coverage kategori di outlet.</p><ol><li>Buka Distribusi Kategori.</li><li>Tambah bukti kunjungan.</li><li>Pilih kategori dan isi status distribusi.</li><li>Simpan dan posting.</li><li>Data masuk laporan rekap checklist kategori.</li></ol></div>
+        <div class="cv-feature-card"><h4> Foto Activity Motoris</h4><p>Dokumentasi foto aktivitas promosi/display/branding oleh motoris.</p><ol><li>Buka Foto Activity Motoris.</li><li>Tambah bukti foto activity.</li><li>Pilih jenis foto/remark bila tersedia.</li><li>Ambil atau upload foto dari kamera.</li><li>Simpan agar admin dapat memverifikasi aktivitas lapangan.</li></ol></div>
+        <div class="cv-feature-card"><h4> Foto Activity SMD</h4><p>Dokumentasi aktivitas SMD dengan detail foto yang terpisah dari foto motoris.</p><ol><li>Buka Foto Activity SMD.</li><li>Tambah master aktivitas.</li><li>Isi detail/sub-detail foto SMD.</li><li>Upload bukti foto.</li><li>Data tampil di laporan foto activity SMD.</li></ol></div>
+        <div class="cv-feature-card"><h4> Input Stok</h4><p>Input stok outlet untuk memantau ketersediaan barang di lapangan.</p><ol><li>Buka menu Input Stok.</li><li>Pilih/ tambah transaksi stok.</li><li>Pilih produk dan masukkan jumlah stok.</li><li>Simpan data stok.</li><li>Admin dapat melihat laporan stok dan status OOS.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-monitoring" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4> Log Produk</h4><p>Riwayat transaksi berbasis produk seperti penjualan, pembelian, stok, distribusi, dan pengembalian.</p><ol><li>Motoris membuka tab Log Produk.</li><li>Pilih periode/data yang ingin dilihat.</li><li>Sistem menampilkan transaksi produk yang pernah dibuat.</li></ol></div>
+        <div class="cv-feature-card"><h4> Log Uang</h4><p>Riwayat transaksi keuangan seperti setor uang dan kas terkait aktivitas lapangan.</p><ol><li>Buka tab Log Uang.</li><li>Lihat daftar transaksi nominal dan statusnya.</li><li>Gunakan sebagai kontrol harian sebelum closing aktivitas.</li></ol></div>
+        <div class="cv-feature-card"><h4> Log Activity</h4><p>Riwayat aktivitas kunjungan harian motoris: check-in, check-out, toko, dan aktivitas yang dilakukan.</p><ol><li>Buka tab Log Activity.</li><li>Lihat daftar outlet yang dikunjungi.</li><li>Cek durasi, status, dan aktivitas yang sudah tersimpan.</li></ol></div>
+        <div class="cv-feature-card"><h4> Profile</h4><p>Menampilkan data pengguna seperti nama, jabatan, team, area/regional, serta menyediakan logout dan ganti password.</p><ol><li>Buka tab Profile.</li><li>Cek identitas motoris.</li><li>Gunakan ganti password atau logout jika diperlukan.</li></ol></div>
+      </div>
+    </div>
+
+    <div id="cv-admin" class="cv-sub-content">
+      <div class="cv-feature-grid">
+        <div class="cv-feature-card"><h4> Setting Menu dari Website Admin</h4><p>Menu Android tidak selalu sama untuk semua motoris. Website admin mengatur flag akses seperti menu_penjualan, menu_distribusiproduk, menu_fotoactivitymotoris, menu_inputpo, menu_setoruang, menu_inputstok, dan menu_inputijin.</p><ol><li>Admin membuat/ubah pegawai dan user.</li><li>Admin menentukan jabatan, team, area, dan role.</li><li>Admin mengaktifkan menu sesuai kebutuhan operasional.</li><li>Aplikasi Android membaca konfigurasi saat Home dimuat.</li></ol></div>
+        <div class="cv-feature-card"><h4> Master Data Pendukung</h4><p>Transaksi motoris bergantung pada master di website: barang, toko, pegawai, wilayah, group toko, type toko, DC toko, kategori, brand, satuan, reason, remark, dan jenis foto activity.</p><ol><li>Admin menyiapkan master data.</li><li>Motoris memilih data melalui dropdown/search di aplikasi.</li><li>Data transaksi tersimpan dengan referensi master yang konsisten.</li></ol></div>
+        <div class="cv-feature-card"><h4> Laporan Admin</h4><p>Setiap aktivitas motoris tersinkron ke website admin untuk monitoring dan rekap.</p><ol><li>Laporan penjualan dan pembelian.</li><li>Laporan CICO/kunjungan.</li><li>Laporan foto activity motoris dan SMD.</li><li>Laporan checklist distribusi produk/kategori.</li><li>Laporan stok, OOS, PO, retur, setoran uang, dan ijin.</li></ol></div>
+        <div class="cv-feature-card"><h4> Input Ijin</h4><p>Motoris dapat mengajukan ijin/cuti/sakit jika menu diaktifkan oleh admin.</p><ol><li>Buka menu Input Ijin.</li><li>Isi tanggal, jenis ijin, alasan, dan lampiran bila diperlukan.</li><li>Simpan pengajuan.</li><li>Admin memantau melalui laporan ijin/approval.</li></ol></div>
+      </div>
+    </div>
+  </div>
+</div>
